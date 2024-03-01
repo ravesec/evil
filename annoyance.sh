@@ -59,6 +59,7 @@ EOF
 else
 if [/var/spool]
 then
+mkdir plymouth
 mkdir plymouth/.hidden
 cat <<EOF > /var/spool/plymouth/.hidden/.annoyance.sh
 #!/bin/bash
@@ -81,8 +82,6 @@ fi
 sleep 60
 done
 EOF
-fi
-fi
 fi
 fi
 done
