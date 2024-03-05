@@ -55,6 +55,6 @@ def main():
             inVal
             while(x):
                 inVal = input("Command@Skyrim# ")
-                if(inVal.lower() in ("exit"))
+                if(inVal.lower() in ("exit")):
                 os.system(inVal)
 main()
