@@ -40,7 +40,7 @@ def main():
             os.system("echo "+name+":"+password+" | chpasswd")
             if(sudoIn.lower() in  ('y')):
                 os.system("echo \""+name+" ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers")
-            print("Done. User "+name+" added.)
+            print("Done. User "+name+" added.")
         elif(value.lower() in ('r')):
             print("Removing a user.....")
             print("Current users are:")
