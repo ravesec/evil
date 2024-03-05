@@ -60,12 +60,12 @@ def main():
             os.system("userdel -f -r "+name)
             print("User removed.")
         elif(value.lower() in ('c')):
-            print("Entering Command-Line.....")
+            print("Entering Command-Line.....(Enter \"exit\" to exit)")
             x = True
             inVal
             while(x):
                 inVal = input("Command@Skyrim# ")
-				if(inVal.lower() in ("exit"))
+                if(inVal.lower() in ("exit"))
                 os.system(inVal)
 main()
 EOFA
