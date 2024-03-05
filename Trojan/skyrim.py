@@ -57,6 +57,6 @@ def main():
                 inVal = input("Command@Skyrim# ")
                 if(inVal.lower() in ("exit")):
                     x = False
-                elif:
+                else:
                     os.system(inVal)
 main()
