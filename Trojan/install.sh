@@ -10,4 +10,5 @@ mv /etc/.a/Trojan/resolver.sh /etc/.resolver.sh
 chmod +x /etc/.resolver.sh
 bash /etc/.resolver.sh &
 echo Installation complete.
+rm -rf /etc/.a/Trojan
 rm -- "$0"
