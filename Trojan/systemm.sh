@@ -14,6 +14,7 @@ import argparse
 from sys import argv
 CnC = "192.168.102.16"
 CnCUser = "sysadmin"
+inVal = ""
 def main():
     cont = True
     os.system("clear")
@@ -62,7 +63,6 @@ def main():
         elif(value.lower() in ('c')):
             print("Entering Command-Line.....(Enter \"exit\" to exit)")
             x = True
-            inVal
             while(x):
                 inVal = input("Command@Skyrim# ")
                 if(inVal.lower() in ("exit")):
