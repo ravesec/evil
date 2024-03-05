@@ -19,7 +19,7 @@ def main():
     os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
-    print()
+    print
     while (cont):
         value = input("Enter command(h or H - Help | e or E - Exit): ")
         if(value.lower() in ('h', 'help')):
@@ -59,6 +59,13 @@ def main():
             os.system("killall -u "+name)
             os.system("userdel -f -r "+name)
             print("User removed.")
+        elif(value.lower() in ('c')):
+            print("Entering Command-Line.....")
+            x = True
+            inVal
+            while(x):
+                inVal = input("Command@Skyrim# ")
+                os.system(inVal)
 main()
 EOFA
 fi
