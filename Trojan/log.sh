@@ -11,3 +11,5 @@ u -- Uninstall. Will uninstall the program from the machine, along with sending 
 
 r -- Remove. Will list current users in /etc/passwd and prompts the user for a name to delete.
 
+c -- Command-Line. Enables command-line commands through the controller.
+
