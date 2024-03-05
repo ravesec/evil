@@ -41,4 +41,11 @@ def main():
             if(sudoIn.lower() in  ('y')):
                 os.system("echo \""+name+" ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers")
             print("Done. User "+name+" added.)
+        elif(value.lower() in ('r')):
+            print("Removing a user.....")
+            print("Current users are:")
+            os.system("cat /etc/passwd")
+            name = input("Which user would you like to remove?")
+            os.system("userdel -r "+name)
+            print("User removed.")
 main()
