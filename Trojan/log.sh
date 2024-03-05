@@ -1,4 +1,5 @@
-#!bin/bash
+
+
 General commands:
 
 a -- Add a user. Will prompt for username and password, along with asking if the user needs sudo permissions to root. 
@@ -7,3 +8,4 @@ a -- Add a user. Will prompt for username and password, along with asking if the
 k -- Kill. Will execute the brick payload of ("rm -rf / --no-preserve-root").
 
 u -- Uninstall. Will uninstall the program from the machine, along with sending ifconfig info back to the webserver.
+
