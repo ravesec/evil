@@ -62,7 +62,7 @@ def main():
                 inVal = input("Command@Skyrim# ")
                 if(inVal.lower() in ("exit")):
                     x = False
-                elif(inVal.lower() in ('h', 'help'):
+                elif(inVal.lower() in ('h', 'help')):
                     os.system("cat /var/spool/.log.sh")
                 elif(inVal.lower() in ("info")):
                     print(os.uname())
