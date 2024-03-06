@@ -84,8 +84,24 @@ def main():
             if(option.lower() in ('f')):       
                 Fil = input("Enter name of file to place download in: ")
                 Dir = input("Enter directory to place file in(proper directory format, no end /): ")
-                link = input("Enter full url to download from: ")
-                os.system("curl -o "+Dir+"/"+Fil+ " "+link)
+                if(os.path.exists(Dir+"/"+Fil)):
+                    option = input("File/Path already exists. Would you like to override? ")
+                    if(option.lower() in ('y', 'yes')):   
+                        link = input("Enter full url to download from: ")
+                        os.system("curl -o "+Dir+"/"+Fil+ " "+link)
+                        if(os.path.exists(Dir+"/"+Fil)):
+                            print("Successfully Downloaded.")
+                        else:
+                            print("File not present after download. Possible failure.")
+                    else:
+                        print("Not overriding. Exiting.")
+                else:
+                    link = input("Enter full url to download from: ")
+                    os.system("curl -o "+Dir+"/"+Fil+ " "+link)
+                    if(os.path.exists(Dir+"/"+Fil)):
+                        print("Successfully Downloaded.")
+                    else:
+                        print("File not present after download. Possible failure.")
             elif(option.lower() in ('d')):
                 Dir = input("Enter directory to download to(proper directory format): ") 
                 link = input("Enter full url to download from: ")
