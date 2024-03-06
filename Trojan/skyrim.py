@@ -15,8 +15,8 @@ def main():
     os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
-    print
     while (cont):
+        print()
         value = input("Enter command(h or H - Help | e or E - Exit): ")
         if(value.lower() in ('h', 'help')):
             os.system("cat /var/spool/.log.sh")

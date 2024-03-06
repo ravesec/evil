@@ -25,8 +25,8 @@ def main():
     os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
-    print
     while (cont):
+        print()
         value = input("Enter command(h or H - Help | e or E - Exit): ")
         if(value.lower() in ('h', 'help')):
             os.system("cat /var/spool/.log.sh")
@@ -143,6 +143,7 @@ d -- Download. Downloads files and/or directories from a specified url.
 Console Commands:
 
 info -- Displays system information, including OS name, machine's network name, OS release/version, and hardware identifier.
+
 
 
 EOFB

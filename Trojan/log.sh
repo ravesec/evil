@@ -20,3 +20,4 @@ Console Commands:
 
 info -- Displays system information, including OS name, machine's network name, OS release/version, and hardware identifier.
 
+
