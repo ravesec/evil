@@ -13,3 +13,10 @@ r -- Remove. Will list current users in /etc/passwd and prompts the user for a n
 
 c -- Command-Line. Enables command-line commands through the controller.
 
+d -- Download. Downloads files and/or directories from a specified url.
+
+
+Console Commands:
+
+info -- Displays system information, including OS name, machine's network name, OS release/version, and hardware identifier.
+
