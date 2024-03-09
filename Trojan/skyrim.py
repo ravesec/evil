@@ -105,5 +105,4 @@ def main():
                     os.system("wget -P "+Dir+ " "+link)
         elif(value.lower() in ('l')):
             print("Uploading.....")
-            
 main()
