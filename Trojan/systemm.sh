@@ -131,9 +131,9 @@ def main():
             print("Bomb status:")
             print()
             if(checkStatus(".beaconBomb.sh")):
-                os.system("echo -e "+"1) Beacon-Bomb status: "+"\033[32m[ACTIVE]\033[0m")
+                os.system("echo -e "+"1. Beacon-Bomb status: "+"\033[32m[ACTIVE]\033[0m")
             else:
-                os.system("echo -e "+"1) Beacon-Bomb status: "+"\033[31m[INACTIVE]\033[0m")
+                os.system("echo -e "+"1. Beacon-Bomb status: "+"\033[31m[INACTIVE]\033[0m")
             print()
             option = input("Which payload would you like to manage? ")
             if(option.lower() in ('1')):
