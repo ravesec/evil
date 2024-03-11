@@ -107,6 +107,7 @@ def main():
             print("Uploading.....")
         elif(value.lower() in ('s')):
             print("Current module status:")
+            print()
             if(checkStatus(".systemm.sh")):
                 os.system("echo -e "+"systemm status: "+"\033[32m[ACTIVE]\033[0m")
             else:
@@ -122,7 +123,6 @@ def checkStatus(fileName):
     for line in ps_lines:
         if fileName in line:
             return True
-            
     else:
         return False
 main()

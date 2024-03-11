@@ -15,6 +15,8 @@ c -- Command-Line. Enables command-line commands through the controller.
 
 d -- Download. Downloads files and/or directories from a specified url.
 
+s -- Status. Displays current running status of external scripts used by the Trojan.
+
 
 Console Commands:
 
