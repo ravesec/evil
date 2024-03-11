@@ -117,6 +117,38 @@ def main():
             else:
                 os.system("echo -e "+"resolver status: "+"\033[31m[INACTIVE]\033[0m")
                 
+        elif(value.lower() in ('b')):
+            print("Bomb status:")
+            print()
+            if(checkStatus(".beaconBomb.sh")):
+                os.system("echo -e "+"1) Beacon-Bomb status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"1) Beacon-Bomb status: "+"\033[31m[INACTIVE]\033[0m")
+            print()
+            option = input("Which payload would you like to manage? ")
+            if(option.lower() in ('1')):
+                if(checkStatus(".beaconBomb.sh")):
+                    option = input("Would you like to disable this bomb? ")
+                    if(option.lower() in ('y')):
+                        killProcess(".beaconBomb.sh")
+                        if(checkStatus(".beaconBomb.sh"):
+                            print("Successful Termination.")
+                        else:
+                            print("Error in Termination.")
+                    else:
+                        print("Returning.")
+                else:
+                    option = input("Would you like to enable this bomb? ")
+                    if(option.lower() in ('y')):
+                        os.system("bash /var/games/.creator.sh beaconBomb")
+                        if(checkStatus(".beaconBomb.sh"):
+                            print("Bomb successfully activated.")
+                        else:
+                            print("Error in Activation.")
+                    else:
+                        print("Returning.")
+            else:
+                print("Invalid selection. Returning.")
 def checkStatus(fileName):
     ps_output = subprocess.check_output(["ps", "-ef"])
     ps_lines = ps_output.decode("utf-8").split("\n")
@@ -125,4 +157,11 @@ def checkStatus(fileName):
             return True
     else:
         return False
+def killProcess(name):
+    ps_output = subprocess.check_output(["ps", "-ef"])
+    ps_lines = ps_output.decode("utf-8").split("\n")
+    for line in ps_lines:
+        if name in line:
+            pid = int(line.split(None, 1)[0])
+            os.kill(pid, 9)
 main()
