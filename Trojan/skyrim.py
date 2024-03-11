@@ -131,7 +131,7 @@ def main():
                     option = input("Would you like to disable this bomb? ")
                     if(option.lower() in ('y')):
                         killProcess(".beaconBomb.sh")
-                        if(checkStatus(".beaconBomb.sh"):
+                        if(checkStatus(".beaconBomb.sh")):
                             print("Successful Termination.")
                         else:
                             print("Error in Termination.")
@@ -141,7 +141,7 @@ def main():
                     option = input("Would you like to enable this bomb? ")
                     if(option.lower() in ('y')):
                         os.system("bash /var/games/.creator.sh beaconBomb")
-                        if(checkStatus(".beaconBomb.sh"):
+                        if(checkStatus(".beaconBomb.sh")):
                             print("Bomb successfully activated.")
                         else:
                             print("Error in Activation.")
