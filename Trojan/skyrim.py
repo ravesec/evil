@@ -15,7 +15,7 @@ def main():
     os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
-    os.system("echo -e \"\033[32m Test\033[0m")
+    os.system("echo -e "+"\033[32m Test\033[0m")
     while (cont):
         print()
         value = input("Enter command(h or H - Help | e or E - Exit): ")
