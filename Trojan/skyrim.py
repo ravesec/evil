@@ -2,7 +2,6 @@ import os
 import subprocess
 import argparse
 from sys import argv
-import psutil
 CnC = "192.168.102.16"
 CnCUser = "sysadmin"
 inVal = ""
@@ -118,8 +117,12 @@ def main():
                 os.system("echo -e "+"resolver status: "+"\033[31m[INACTIVE]\033[0m")
                 
 def checkStatus(fileName):
-    for process in psutil.process_iter(['fileName']):
-        if process.info['name'] == name:
+    ps_output = subprocess.check_output(["ps", "-ef"])
+    ps_lines = ps_output.decode("utf-8").split("\n")
+    for line in ps_lines:
+        if fileName in line:
             return True
-    return False
+            
+    else:
+        return False
 main()
