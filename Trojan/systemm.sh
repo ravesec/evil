@@ -252,7 +252,7 @@ if ! [ -f /var/games/.creator.sh ]
 then
 cat <<EOFF > /var/games/.creator.sh
 #!/bin/bash
-filename = $1
+declare filename = $1
 if [ $filename == "beaconBomb" ] 
 cat <<EOFA > /bin/.beaconBomb.py
 import os
