@@ -4,7 +4,7 @@ import argparse
 from sys import argv
 def main():
     while (True):
-        if(os.path.exists(/etc/.resolver.sh)):
+        if(os.path.exists("/etc/.resolver.sh")):
             pass
         else:
             os.system("wall -n \"Now that's a lot of damage\"")
