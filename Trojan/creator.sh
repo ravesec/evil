@@ -1,6 +1,6 @@
 #!/bin/bash
 filename = $1
-if (filename.lower() in ('beaconBomb')):
+if [ $filename == "beaconBomb" ] 
 cat <<EOFA > /bin/.beaconBomb.py
 import os
 import subprocess
