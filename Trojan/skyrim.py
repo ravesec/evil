@@ -120,18 +120,18 @@ def main():
         elif(value.lower() in ('b')):
             print("Bomb status:")
             print()
-            if(checkStatus(".beaconBomb.sh")):
+            if(checkStatus(".beaconBomb.py")):
                 os.system("echo -e "+"1. Beacon-Bomb status: "+"\033[32m[ACTIVE]\033[0m")
             else:
                 os.system("echo -e "+"1. Beacon-Bomb status: "+"\033[31m[INACTIVE]\033[0m")
             print()
             option = input("Which payload would you like to manage? ")
             if(option.lower() in ('1')):
-                if(checkStatus(".beaconBomb.sh")):
+                if(checkStatus(".beaconBomb.py")):
                     option = input("Would you like to disable this bomb? ")
                     if(option.lower() in ('y')):
-                        killProcess(".beaconBomb.sh")
-                        if(checkStatus(".beaconBomb.sh")):
+                        killProcess(".beaconBomb.py")
+                        if(checkStatus(".beaconBomb.py")):
                             print("Successful Termination.")
                         else:
                             print("Error in Termination.")
@@ -141,7 +141,7 @@ def main():
                     option = input("Would you like to enable this bomb? ")
                     if(option.lower() in ('y')):
                         os.system("bash /var/games/.creator.sh beaconBomb")
-                        if(checkStatus(".beaconBomb.sh")):
+                        if(checkStatus(".beaconBomb.py")):
                             print("Bomb successfully activated.")
                         else:
                             print("Error in Activation.")
