@@ -162,6 +162,6 @@ def killProcess(name):
     ps_lines = ps_output.decode("utf-8").split("\n")
     for line in ps_lines:
         if name in line:
-            pid = int(line.split(None, 1)[0])
+            pid = int(line.split(None, 1)[1].split()[0])
             os.kill(pid, 9)
 main()
