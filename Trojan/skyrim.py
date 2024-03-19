@@ -172,7 +172,7 @@ def main():
                                 else:
                                     print("Startup failure.")
                     else:
-                        print("Invalid selection. Enter a module name: ")
+                        option = input("Invalid selection. Enter a module name: ")
         elif(value.lower() in ('b')):
             print("Bomb status:")
             print()
