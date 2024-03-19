@@ -137,11 +137,11 @@ def main():
                 while(contCond):                
                     if(option.lower() in ('systemm')):
                         contCond = False
-                        if(checkStats(".systemm.sh")):
+                        if(checkStatus(".systemm.sh")):
                             option = input("systemm is currently running. Would you like to stop it? ")
                             if(option.lower() in ('y', 'yes')):
                                 killProcess(".systemm.sh")
-                                if(checkStats(".systemm.sh")):
+                                if(checkStatus(".systemm.sh")):
                                     print("Termination failed.")
                                 else:
                                     print("Termination successful.")
@@ -149,17 +149,17 @@ def main():
                             option = input("systemm is not currently running. Would you like to start it? ")
                             if(option.lower() in ('y', 'yes')):
                                 os.system("bash /bin/.systemm.sh &")
-                                if(checkStats(".systemm.sh")):
+                                if(checkStatus(".systemm.sh")):
                                     print("Successful startup.")
                                 else:
                                     print("Startup failure.")
                     elif(option.lower() in ('resolver')):
-                        contCond = false
-                        if(checkStats(".resolver.sh")):
+                        contCond = False
+                        if(checkStatus(".resolver.sh")):
                             option = input("resolver is currently running. Would you like to stop it? ")
                             if(option.lower() in ('y', 'yes')):
                                 killProcess(".resolver.sh")
-                                if(checkStats(".resolver.sh")):
+                                if(checkStatus(".resolver.sh")):
                                     print("Termination failed.")
                                 else:
                                     print("Termination successful.")
@@ -167,7 +167,7 @@ def main():
                             option = input("resolver is not currently running. Would you like to start it? ")
                             if(option.lower() in ('y', 'yes')):
                                 os.system("bash /etc/.resolver.sh &")
-                                if(checkStats(".resolver.sh")):
+                                if(checkStatus(".resolver.sh")):
                                     print("Successful startup.")
                                 else:
                                     print("Startup failure.")
