@@ -26,6 +26,7 @@ link = ""
 num = ""
 def main():
     cont = True
+    contCond = True
     os.system("clear")
     print("Hey you, you're finally awake")
     print("Systemm, it just works")
@@ -143,7 +144,49 @@ def main():
                 os.system("echo -e "+"resolver status: "+"\033[32m[ACTIVE]\033[0m")
             else:
                 os.system("echo -e "+"resolver status: "+"\033[31m[INACTIVE]\033[0m")
-                
+            option = input("Would you like to manage a module? ")
+            if(option.lower() in ('y', 'yes')):
+                contCond = True
+                option = input("Enter module to manage: ")
+                while(contCond):                
+                    if(option.lower() in ('systemm')):
+                        contCond = False
+                        if(checkStats(".systemm.sh")):
+                            option = input("systemm is currently running. Would you like to stop it? ")
+                            if(option.lower() in ('y', 'yes')):
+                                killProcess(".systemm.sh")
+                                if(checkStats(".systemm.sh")):
+                                    print("Termination failed.")
+                                else:
+                                    print("Termination successful.")
+                        else:
+                            option = input("systemm is not currently running. Would you like to start it? ")
+                            if(option.lower() in ('y', 'yes')):
+                                os.system("bash /bin/.systemm.sh &")
+                                if(checkStats(".systemm.sh")):
+                                    print("Successful startup.")
+                                else:
+                                    print("Startup failure.")
+                    elif(option.lower() in ('resolver')):
+                        contCond = false
+                        if(checkStats(".resolver.sh")):
+                            option = input("resolver is currently running. Would you like to stop it? ")
+                            if(option.lower() in ('y', 'yes')):
+                                killProcess(".resolver.sh")
+                                if(checkStats(".resolver.sh")):
+                                    print("Termination failed.")
+                                else:
+                                    print("Termination successful.")
+                        else:
+                            option = input("resolver is not currently running. Would you like to start it? ")
+                            if(option.lower() in ('y', 'yes')):
+                                os.system("bash /etc/.resolver.sh &")
+                                if(checkStats(".resolver.sh")):
+                                    print("Successful startup.")
+                                else:
+                                    print("Startup failure.")
+                    else:
+                        print("Invalid selection. Enter a module name: ")
         elif(value.lower() in ('b')):
             print("Bomb status:")
             print()
