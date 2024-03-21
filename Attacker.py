@@ -2,6 +2,7 @@ import paramiko
 import sys
 import subprocess
 import time
+import threading
 
 def main():
     option=""
@@ -49,7 +50,7 @@ def main():
             remotePath=sys.argv[2] #PATH TO SUBJECT SCRIPT ON TARGET MACHINE
             
             for target in targetList:
-                attack(localPath, remotePath, target, user, password)
+                attackThread(localPath, remotePath, target, user, password)
             
         elif(sys.argv[3] == "3"):
             prefix=input("Enter address prefix of target network: ") #PREFIX OF TARGET NETWORK
@@ -72,7 +73,7 @@ def main():
             
             while(x <= int(highestNum)):
                 target=prefix+"."+str(x)
-                attack(localPath, remotePath, target, user, password)
+                attackThread(localPath, remotePath, target, user, password)
                 x=x+1
         
         print("Attack finished")
@@ -132,4 +133,8 @@ def attack(local_script_path, remote_script_path, remote_host, remote_user, remo
     except Exception as e:
         print(f"An error occurred: {str(e)}")
         
+def attackThread(local_script_path, remote_script_path, remote_host, remote_user, remote_password):
+    thread = threading.Thread(target=attack, args=(local_script_path, remote_script_path, remote_host, remote_user, remote_password))
+    thread.start()
+
 main()
