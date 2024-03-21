@@ -122,7 +122,7 @@ def attack(local_script_path, remote_script_path, remote_host, remote_user, remo
         print(stderr.read().decode('utf-8'))
 
         # Execute the script on the remote machine
-        stdin, stdout, stderr = ssh_client.exec_command(f"python3 {remote_script_path}")
+        stdin, stdout, stderr = ssh_client.exec_command(f"sudo python3 {remote_script_path}")
         print(stdout.read().decode('utf-8'))
         print(stderr.read().decode('utf-8'))
 
