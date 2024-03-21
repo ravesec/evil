@@ -70,8 +70,8 @@ def main():
             
             x=int(lowestNum)
             
-            while(x <= highestNum):
-                target=prefix+str(x)
+            while(x <= int(highestNum)):
+                target=prefix+"."+str(x)
                 attack(localPath, remotePath, target, user, password)
                 x=x+1
         
