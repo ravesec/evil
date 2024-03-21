@@ -1,7 +1,7 @@
 import paramiko
 import sys
 import subprocess
-import sleep
+import time
 
 def main():
     option=""
