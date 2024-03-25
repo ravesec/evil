@@ -1,4 +1,5 @@
 import os
+import sys
 
 def main():
     sshKey = "" #TODO - Enter public SSH key here

