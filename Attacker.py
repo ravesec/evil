@@ -125,7 +125,8 @@ def attack(local_script_path, remote_script_path, remote_host, remote_user, remo
 
         # Execute the script on the remote machine
         stdin, stdout, stderr = ssh_client.exec_command(f"sudo python3 {remote_script_path}")
-        time.sleep(5)
+        print("Executing script...")
+        time.sleep(10)
 
         # Close the SSH connection
         ssh_client.close()
