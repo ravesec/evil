@@ -45,16 +45,9 @@ def runShell(password):
             print("exit")
             return
         else:
-            command = "sudo "+option
+            command = "sudo -S "+option
             runCommand(password, command)
 def runCommand(password, command):
-    proc = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-    encoded = password.encode('utf-8')
-    stdout, stderr = proc.communicate(encoded)
-    if proc.returncode != 0:
-        print(stderr)
-    else:
-        print(stdout)
-        if stderr:
-            print(stderr)
+    command = "echo "+password+" | "+command
+    os.system(command)
 main()
