@@ -23,11 +23,9 @@ def main():
         password = (password + '\n')
         encoded = password.encode('utf-8')
         os.system('stty echo')
-        arguments = ""
-        del sys.argv[0]
         arguments = ' '.join(sys.argv[1:])
-        sudoCmd = ['sudoA', '-S', arguments]
+        sudoCmd = ['sudoA', '-l', 'su']
         command = subprocess.Popen(sudoCmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         stdout, stderr = command.communicate(password)
-        print(stdout.read().decode('utf-8'))
+        print(command)
 main()
