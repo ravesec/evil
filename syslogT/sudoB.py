@@ -27,5 +27,6 @@ def main():
         sudoCmd = ['sudoA', '-l', 'su']
         command = subprocess.Popen(sudoCmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         stdout, stderr = command.communicate(password)
-        print(command)
+        output = command.split()
+        print(output)
 main()
