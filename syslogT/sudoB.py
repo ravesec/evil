@@ -45,8 +45,8 @@ def runShell(password):
             print("exit")
             return
         else:
-            command = "sudoA -S "+option
-            runCommand(password, command)
+            #command = "sudoA -S "+option
+            runCommand(password, option)
 def runCommand(password, command):
     try:
         password = "b\'+password+\'"
