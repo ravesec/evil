@@ -49,7 +49,8 @@ def runShell(password):
             runCommand(password, command)
 def runCommand(password, command):
     try:
-        result = subprocess.run(['sudoA', '-S', *command], input=password.encode(), capture_output=True, text=True, check=True)
+        encoded = password.encode('utf-8')
+        result = subprocess.run(['sudoA', '-S', *command], input=encoded, capture_output=True, text=True, check=True)
         print(result.stdout)
     except subprocess.CalledProcessError as e:
         print(e)
