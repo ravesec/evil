@@ -15,9 +15,10 @@ def main():
     sshClient.connect(address, username=user, password=password)
     
     print("Attempting connection to syslogT...")
-    command = "python3 /lib/syslogb \"xyz\""
-    stdin, stdout, stderr = ssh_client.exec_command(command)
+    command = "python3 /lib/.syslogb.py \"xyz\""
+    stdin, stdout, stderr = sshClient.exec_command(command)
     print("stdout")
     print(stdout.read().decode('utf-8'))
     print("stderr")
     print(stderr.read().decode('utf-8'))
+main()
