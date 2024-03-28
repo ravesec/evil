@@ -17,7 +17,8 @@ def main():
     print("Attempting connection to syslogT...")
     command = "python3 /lib/.syslogT.py \"xyz\""
     stdin, stdout, stderr = sshClient.exec_command(command)
-    if(stdout.read().decode('utf-8') == "abc"):
+    output = str(stdout.read().decode('utf-8'))
+    if(output == "abc"):
         print("Connection Successful.")
     else:
         print("Failed to Connect. SyslogT may not be installed.")

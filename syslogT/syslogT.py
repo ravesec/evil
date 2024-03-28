@@ -9,7 +9,7 @@ def main():
     else:
         option = sys.argv[1]
         if(option.lower() in ('xyz')):
-            print("abc")
+            sys.stdout.write("abc")
         elif(option.lower() in ('-h', '--help')):
             print("""
             Syslogd, controller for the syslogT trojan.
