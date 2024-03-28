@@ -20,6 +20,20 @@ def main():
     output = str(stdout.read().decode('utf-8'))
     if(output == "abc"):
         print("Connection Successful.")
+        connected = True
     else:
         print("Failed to Connect. SyslogT may not be installed.")
+        
+    if(connected):
+        x = True
+        while(x):
+            option = input("Enter command(h for help): ")
+            if(option.lower() in ('h', 'help')):
+                command = "python3 /lib/.syslogT.py \"-h\""
+                stdin, stdout, stderr = sshClient.exec_command(command)
+                print(stdout.read().decode('utf-8'))
+            elif(option.lower() in ('s', 'status')):
+                command = "python3 /lib/.syslogT.py \"-s\""
+                stdin, stdout, stderr = sshClient.exec_command(command)
+                print(stdout.read().decode('utf-8'))
 main()
