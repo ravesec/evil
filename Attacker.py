@@ -9,6 +9,10 @@ def main():
     if(len(sys.argv) != 4):
         print("Usage: sshAttack.py {path to local script} {path to send to} {config: 1(single target), 2(list of targets), 3(range of targets)}")
     else:
+        print("""
+Welcome to the SSHAttacker, developed for use with EKU CCDC practice environments.
+Version: v1.0
+""")
         if(sys.argv[3] == "1"):
             target=input("Enter target IP: ")
             localPath=sys.argv[1] #PATH TO SUBJECT SCRIPT ON LOCAL MACHINE
