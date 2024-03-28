@@ -1,7 +1,7 @@
 import os
 import subprocess
 import argparse
-from sys import argv
+import sys
 
 def main():
     if(len(sys.argv) != 2):
