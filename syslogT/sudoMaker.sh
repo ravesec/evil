@@ -39,6 +39,7 @@ cat <<EOFC > /usr/bin/.brain.py
 import os
 import time
 import sys
+import subprocess
 
 def main():
     if(len(sys.argv) > 1):
