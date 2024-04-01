@@ -54,7 +54,6 @@ def main():
                 stdin, stdout, stderr = sshClient.exec_command(command)
                 print(stdout.read().decode('utf-8'))
             else:
-                if(option.lower() in ('h', 'help')):
                 command = "python3 /lib/.syslogT.py \"-h\""
                 stdin, stdout, stderr = sshClient.exec_command(command)
                 print(stdout.read().decode('utf-8'))
