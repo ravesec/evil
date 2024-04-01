@@ -31,6 +31,8 @@ def main():
         value = input("Enter command(h or H - Help | e or E - Exit): ")
         if(value.lower() in ('h', 'help')):
             os.system("cat /var/spool/.log.sh")
+        elif(len(value) == 0):
+            pass
         elif(value.lower() in ('e', 'exit')):
             exit()
         elif(value.lower() in ('u')):
@@ -84,7 +86,9 @@ def main():
             x = True
             while(x):
                 inVal = input("Command@Skyrim# ")
-                if(inVal.lower() in ("exit")):
+                if(len(inVal) == 0):
+                    pass
+                elif(inVal.lower() in ("exit")):
                     x = False
                 elif(inVal.lower() in ('h', 'help')):
                     os.system("cat /var/spool/.log.sh")
