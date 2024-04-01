@@ -10,6 +10,11 @@ def main():
     user = input("Enter user to connect with('d' to default to 'root'): ")
     password = input("Enter password to connect with('d' to default to 'changeme'): ")
     
+    if(user.lower() in ('d')):
+        user = "root"
+    if(password.lower() in ('d')):
+        password = changeme
+    
     sshClient = paramiko.SSHClient()
     sshClient.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     sshClient.connect(address, username=user, password=password)
