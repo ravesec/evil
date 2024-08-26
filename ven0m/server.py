@@ -3,6 +3,8 @@ import os
 import socket
 import file
 import paramiko
+import subprocess
+import time
 def main():
     
 def install(address):

