@@ -7,6 +7,8 @@ yum install -y python3
 yum install -y pip
 pip install os
 pip install socket
+pip install file
+pip install sys
 nft add table venom
 nft add chain venom input \{ type filter hook input priority -101 \; policy accept\; \}
 nft add chain venom output \{ type filter hook output priority -101 \; policy accept\; \}
