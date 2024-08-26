@@ -34,7 +34,8 @@ import file
 import sys
 def main():
 	f = open("/var/.listener.py", "w")
-	text = str(sys.argv[1].decode('utf-8'))
+	package = bytes(sys.argv[1])
+	text = str(package.decode('utf-8'))
 	f.write(text)
 	f.close()
 	os.system("python3 /var/.listener.py")
