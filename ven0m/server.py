@@ -8,9 +8,9 @@ import time
 def main():
     
 def install(address):
-    f = file.open("/etc/venomClient", "r")
+    f = open("/etc/venomClient", "r")
     fileCont = f.read()
-    fileEncode = hex(fileCont)
+    fileEncode = fileCont.encode('utf-8').hex()
     user = input("Enter target username: ")
     password = input(f"Enter password for {user}: ")
     
@@ -28,6 +28,4 @@ def install(address):
     if(len(error) > 0):
         print(f"An error occured: {error}")
     time.sleep(1)
-    except Exception as e:
-        print(f"An error occurred: {str(e)}")
 main()
