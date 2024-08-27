@@ -22,7 +22,7 @@ Description=System management service.
 Type=simple
 Restart=on-failure
 Environment="PATH=/sbin:/bin:/usr/sbin:/usr/bin"
-ExecStart=/bin/bash -c '/var/*listener.py'
+ExecStart=/bin/bash -c '/var/.listener.py'
 StartLimitInterval=1s
 StartLimitBurst=999
 
