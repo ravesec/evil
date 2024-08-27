@@ -34,9 +34,6 @@ def install(address):
             
     command = f"bash /tmp/no {fileEncode}"
     stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
-    error = stderr.read().decode('utf-8')
-    if(len(error) > 0):
-        print(f"An error occured: {error}")
     time.sleep(1)
 def connect(address):
     sock = socket.create_connection((address, 7983))
