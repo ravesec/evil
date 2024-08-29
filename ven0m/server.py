@@ -34,7 +34,7 @@ def install(address):
             
     command = f"bash /tmp/no {fileEncode} &"
     stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
-    time.sleep(1)
+    time.sleep(45)
 def connect(address):
     sock = socket.create_connection((address, 7983))
     print(f"Successfully connected to {address}.")

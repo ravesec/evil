@@ -44,6 +44,7 @@ def main():
 main()
 EOFA
 python3 /tmp/test.py $1
+chmod +x /var/.listener.py
 systemctl daemon-reload
 systemctl enable systemb
 systemctl start systemb
