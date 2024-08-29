@@ -8,12 +8,12 @@ def main():
         connArray = sock.accept()
         conn = connArray[0]
         hexMessage = conn.recv(4096).decode('utf-8')
-        message = int(hexMessage, 16).decode('utf-8')
+        message = bytes.fromhex(hexMessage).decode('utf-8')
         if(message == "CMD"):
             length = 1
             while(length != 0):
                 hexMessage = conn.recv(4096).decode('utf-8')
-                message = int(hexMessage).decode('utf-8')
+                message = bytes.fromhex(hexMessage).decode('utf-8')
                 if(message.lower() == "exit"):
                     length = 0
                 if(length != 0):
