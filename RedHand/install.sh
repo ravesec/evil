@@ -10,5 +10,9 @@ apt-get update && apt-get install -y pip
 pip install paramiko
 pip install file
 repo_root=$(git rev-parse --show-toplevel)
-echo $repo_root
+mv $repo_root/RedHand/main.py /bin/rh
+mkdir /lib/RedHand
+touch /lib/RedHand/network.conf
+touch /lib/RedHand/record.stor
+rm $0
 fi
