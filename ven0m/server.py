@@ -6,17 +6,19 @@ import paramiko
 import subprocess
 import time
 def main():
-    option = input("Enter command: ")
-    if(len(option) == 0):
-        pass
-    elif(option.lower() == "install"):
-        address = input("Enter address to install client on: ")
-        install(address)
-    elif(option.lower() == "connect"):
-        address = input("Enter address to connect to: ")
-        connect(address)
-    else:
-        printHelp()
+    x = True
+    while(x):
+        option = input("Enter command: ")
+        if(len(option) == 0):
+            pass
+        elif(option.lower() == "install"):
+            address = input("Enter address to install client on: ")
+            install(address)
+        elif(option.lower() == "connect"):
+            address = input("Enter address to connect to: ")
+            connect(address)
+        else:
+            printHelp()
 def install(address):
     f = open("/etc/venomClient", "r")
     fileCont = f.read()
@@ -46,7 +48,7 @@ def connect(address):
             sock.send(encrypt("CMD"))
             y = True
             while(y):
-                command = input(f"[Command@{address}# ")
+                command = input(f"[Command@{address}#] ")
                 if(command.lower() == "exit"):
                     y = False
                 if(not y):
