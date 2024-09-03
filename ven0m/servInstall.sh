@@ -3,8 +3,6 @@ apt-get update && apt-get install -y python3
 apt-get update && apt-get install -y pip
 apt-get update && apt-get install -y git
 pip install paramiko
-pip install os
-pip install sys
 pip install file
 if ! [ -d /etc/horror ]
 then
