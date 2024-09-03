@@ -5,9 +5,36 @@ import os
 import sys
 
 def main():
+    z = False
+    if (not isFirstTime()):
+        z = True
     if(isFirstTime()):
         print("Running first time setup...")
-    else:
+        
+        
+        ecommAddr = input("Enter Ecom IP: ")
+        ecommOS = input("Enter Ecom OS(plus version): ")
+        fedoraAddr = input("Enter Fedora IP: ")
+        fedoraOS = input("Enter Ecom OS(plus version): ")
+        splunkAddr = input("Enter splunk IP: ")
+        splunkOS = input("Enter Ecom OS(plus version): ")
+        ubuntuAddr = input("Enter ubuntu IP: ")
+        ubuntuOS = input("Enter Ecom OS(plus version): ")
+        debianAddr = input("Enter debian IP: ")
+        debianOS = input("Enter Ecom OS(plus version): ")
+        
+        os.system(f'"ecomm:{ecommAddr}:{ecommOS}" >> /lib/RedHand/network.conf')
+        os.system(f'"fedora:{fedoraAddr}:{fedoraOS}" >> /lib/RedHand/network.conf')
+        os.system(f'"splunk:{splunkAddr}:{splunkOS}" >> /lib/RedHand/network.conf')
+        os.system(f'"ubuntu:{ubuntuAddr}:{ubuntuOS}" >> /lib/RedHand/network.conf')
+        os.system(f'"debian:{debianAddr}:{debianOS}" >> /lib/RedHand/network.conf')
+        
+        option = input("Would you like to start RedHand? ")
+        if(option.lower() == "y" or option.lower() == "yes"):
+            z = True
+        else:
+            return
+    if(z):
         network = getNetInfo()
         
 def isFirstTime():
