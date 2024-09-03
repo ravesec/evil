@@ -33,7 +33,7 @@ def getNetInfo():
         network.append(machineList)
     return network
 def getDefaultDependencies(network):
-    defaultDependencies = ["ncat", "python3", "git"
+    defaultDependencies = ["ncat", "python3", "git"]
     for machine in network:
         password = getDefPassword(machine[0])
         address = machine[1]
