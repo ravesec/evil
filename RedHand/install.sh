@@ -14,5 +14,6 @@ mv $repo_root/RedHand/main.py /bin/rh
 mkdir /lib/RedHand
 touch /lib/RedHand/network.conf
 touch /lib/RedHand/record.stor
+mv /$repo_root/RedHand/version /lib/RedHand/version
 rm $0
 fi
