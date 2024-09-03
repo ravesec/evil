@@ -60,7 +60,12 @@ def printHelp():
     print("""
 Venom Backdoor Commands:
     
-    connect |     Connects to remote client.
-    install |     Prepares to install Venom client on remote machine.
+    connect    |     Connects to remote client.
+    install    |     Prepares to install Venom client on remote machine.
+    
+Connected Commands:
+    
+    cmd        |     Enters menu to send commands directly to remote host's os through python os.system.
+    exit       |     Terminates connection.
 """)
 main()
