@@ -19,30 +19,10 @@ def main():
         z = True
     if(isFirstTime()):
         print("Running first time setup...")
-        
-        
-        ecommAddr = input("Enter Ecom IP: ")
-        ecommOS = input("Enter Ecom OS(plus version): ")
-        fedoraAddr = input("Enter Fedora IP: ")
-        fedoraOS = input("Enter Fedora OS(plus version): ")
-        splunkAddr = input("Enter Splunk IP: ")
-        splunkOS = input("Enter Splunk OS(plus version): ")
-        ubuntuAddr = input("Enter Ubuntu IP: ")
-        ubuntuOS = input("Enter Ubuntu OS(plus version): ")
-        debianAddr = input("Enter Debian IP: ")
-        debianOS = input("Enter Debian OS(plus version): ")
-        
-        os.system(f'echo "ecomm:{ecommAddr}:{ecommOS}" >> /lib/RedHand/network.conf')
-        os.system(f'echo "fedora:{fedoraAddr}:{fedoraOS}" >> /lib/RedHand/network.conf')
-        os.system(f'echo "splunk:{splunkAddr}:{splunkOS}" >> /lib/RedHand/network.conf')
-        os.system(f'echo "ubuntu:{ubuntuAddr}:{ubuntuOS}" >> /lib/RedHand/network.conf')
-        os.system(f'echo "debian:{debianAddr}:{debianOS}" >> /lib/RedHand/network.conf')
-        
-        option = input("Would you like to start RedHand? ")
-        if(option.lower() == "y" or option.lower() == "yes"):
-            z = True
-        else:
+        if(netSetup(True)):
             return
+        else:
+            z = True
     if(z):
         network = getNetInfo()
         legend = getLegend()
@@ -84,7 +64,8 @@ def main():
                             vulnDesc.append(transNumToWeakness(vuln))
                         description = ', '.join(vulnDesc)
                         print(f"{machine[0]} selections: {description}")
-                        
+            elif(command.lower() == "config"):
+                netSetup(False)
 def isFirstTime():
     conf = open("/lib/RedHand/network.conf", "r")
     cont = conf.read()
@@ -157,6 +138,32 @@ def getLegend():
         del(presetArray[0])
         returnList.append([presetNum, presetDiff, presetArray])
     return returnList
+def netSetup(flag):
+    ecommAddr = input("Enter Ecom IP: ")
+    ecommOS = input("Enter Ecom OS(plus version): ")
+    fedoraAddr = input("Enter Fedora IP: ")
+    fedoraOS = input("Enter Fedora OS(plus version): ")
+    splunkAddr = input("Enter Splunk IP: ")
+    splunkOS = input("Enter Splunk OS(plus version): ")
+    ubuntuAddr = input("Enter Ubuntu IP: ")
+    ubuntuOS = input("Enter Ubuntu OS(plus version): ")
+    debianAddr = input("Enter Debian IP: ")
+    debianOS = input("Enter Debian OS(plus version): ")
+        
+    os.system(f'echo "ecomm:{ecommAddr}:{ecommOS}" >> /lib/RedHand/network.conf')
+    os.system(f'echo "fedora:{fedoraAddr}:{fedoraOS}" >> /lib/RedHand/network.conf')
+    os.system(f'echo "splunk:{splunkAddr}:{splunkOS}" >> /lib/RedHand/network.conf')
+    os.system(f'echo "ubuntu:{ubuntuAddr}:{ubuntuOS}" >> /lib/RedHand/network.conf')
+    os.system(f'echo "debian:{debianAddr}:{debianOS}" >> /lib/RedHand/network.conf')
+    
+    if(flag):
+        option = input("Would you like to start RedHand? ")
+        if(option.lower() == "y" or option.lower() == "yes"):
+            return False
+        else:
+            return True
+    else:
+        return
 def loadWeakness(machine, weakness, ssh_client):
     address = machine[1]
     
