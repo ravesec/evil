@@ -10,7 +10,7 @@ def main():
     if(updatePend()):
         option = input ("An update is available. Would you like to update? ")
         if(option.lower() == "y" or option.lower() == "yes"):
-            os.system("python3 /lib/RedHand/updater.py")
+            os.system("python3 /lib/RedHand/updater.py" &)
             return
     else:
         print("RedHand is up to date.")
