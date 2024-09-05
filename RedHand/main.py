@@ -102,15 +102,17 @@ def getLegend():
         z = y + 1
         presetList = [[]]
         machineList = []
-        presetNum = legendList[y]
+        presetNumList = legendList[y].split(",")
+        presetNum = presetNumList[0]
+        presetDiff = presetNumList[1]
         presetMacineList = legendList[z].split("\n")
         del(presetMachineList[0]) #removes empty entry at start
         for line in presetMachineList:
-            tmpMachineList = line.split(":")
+            tmpMachineList = line.split(";")
             machine = machineList[0]
             machineList = tmpMachineList.split(",")
             presetList.append([machine, machineList])
-        returnList.append([presetNum, presetList])
+        returnList.append([presetNum, presetDiff, presetList])
         y = y + 2
     return returnList
 def loadWeakness(machine, set, weakness):
@@ -144,11 +146,12 @@ def getDefPassword(hostName):
 def transNumToWeakness(num):
     return {
         "1":"Reverse Shell in /etc/crontab"
-        "2":"Pre-Planted Root SSH Key"
-        "3":"Venom Backdoor Install"
-        "4":"Compromised /bin/passwd"
-        "5":"Compromised /bin/sudo"
-        "6":"Pre-Planted SkyKit"
+        "2":"Pre-Set admin user"
+        "3":"Pre-Planted Root SSH Key"
+        "4":"Venom Backdoor Install"
+        "5":"Compromised /bin/passwd"
+        "6":"Compromised /bin/sudo"
+        "7":"Pre-Planted SkyKit"
     }.get(num, "")
 def getPacMan(machine):
     return {
