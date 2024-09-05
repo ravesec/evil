@@ -1,5 +1,5 @@
 #!/bin/bash
-if ! [$UID == 0 ]
+if ! [ $UID == 0 ]
 then
 echo "Must be run as root."
 fi
