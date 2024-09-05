@@ -47,6 +47,9 @@ def main():
         network = getNetInfo()
         legend = getLegend()
         del(legend[0]) #Removes weird empty entry at beginning of legend
+        presetList = []
+        for preset in legend:
+            presetList.append(preset[0])
         if(legend == "invalid"):
             a = False   #No saved legend
         else:
@@ -59,6 +62,29 @@ def main():
                 print(f"{preset[0]} - Difficulty: \033[33;1m[MEDIUM]\033[0m")
             if(preset[1] == "hard"):
                 print(f"{preset[0]} - Difficulty: \033[31;1m[HARD]\033[0m")
+        x = True
+        while(x):
+            command = input("Enter command: ")
+            if(command.lower() = "view"):
+                preset = input("Which preset would you like to view? ")
+                if(preset not in presetList):
+                    print("Entered preset not in list.")
+                else:
+                    selectedPreset = preset
+                    for preset in legend:
+                        if(preset[0] == selectedPreset):
+                            selectedDiff = preset[1]
+                            selectedRules = preset[2]
+                    print(f"Preset: {selectedPreset}")
+                    print(f"Difficulty: {selectedDiff}")
+                    print("")
+                    for machine in selectedRules:
+                        vulnDesc = []
+                        for vuln in machine[1]:
+                            vulnDesc.append(transNumToWeakness(vuln))
+                        description = ', '.join(vulnDesc)
+                        print(f"{machine[0]} selections: {description}")
+                        
 def isFirstTime():
     conf = open("/lib/RedHand/network.conf", "r")
     cont = conf.read()
@@ -156,6 +182,15 @@ def updatePend():
         return False
     else:
         return True
+def printHelp():
+    print("""
+RedHand help menu
+
+Commands:
+    
+    launch     |     Enters menu where the user can either designate a preset to use or allow random setup.
+    view       |     Allows user to view a specific preset
+""")
 def getDefPassword(hostName):
     return {
         "ecomm": "changeme",
