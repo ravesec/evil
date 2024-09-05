@@ -65,7 +65,7 @@ def main():
         x = True
         while(x):
             command = input("Enter command: ")
-            if(command.lower() = "view"):
+            if(command.lower() == "view"):
                 preset = input("Which preset would you like to view? ")
                 if(preset not in presetList):
                     print("Entered preset not in list.")
@@ -154,7 +154,7 @@ def getLegend():
                 machineName = infoList[0]
                 machineVulns = infoList[1].split(",")
                 presetArray.append([machineName, machineVulns])
-            
+        del(presetArray[0])
         returnList.append([presetNum, presetDiff, presetArray])
     return returnList
 def loadWeakness(machine, weakness, ssh_client):
