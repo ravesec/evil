@@ -23,19 +23,19 @@ def main():
         ecommAddr = input("Enter Ecom IP: ")
         ecommOS = input("Enter Ecom OS(plus version): ")
         fedoraAddr = input("Enter Fedora IP: ")
-        fedoraOS = input("Enter Ecom OS(plus version): ")
-        splunkAddr = input("Enter splunk IP: ")
-        splunkOS = input("Enter Ecom OS(plus version): ")
-        ubuntuAddr = input("Enter ubuntu IP: ")
-        ubuntuOS = input("Enter Ecom OS(plus version): ")
-        debianAddr = input("Enter debian IP: ")
-        debianOS = input("Enter Ecom OS(plus version): ")
+        fedoraOS = input("Enter Fedora OS(plus version): ")
+        splunkAddr = input("Enter Splunk IP: ")
+        splunkOS = input("Enter Splunk OS(plus version): ")
+        ubuntuAddr = input("Enter Ubuntu IP: ")
+        ubuntuOS = input("Enter Ubuntu OS(plus version): ")
+        debianAddr = input("Enter Debian IP: ")
+        debianOS = input("Enter Debian OS(plus version): ")
         
-        os.system(f'"ecomm:{ecommAddr}:{ecommOS}" >> /lib/RedHand/network.conf')
-        os.system(f'"fedora:{fedoraAddr}:{fedoraOS}" >> /lib/RedHand/network.conf')
-        os.system(f'"splunk:{splunkAddr}:{splunkOS}" >> /lib/RedHand/network.conf')
-        os.system(f'"ubuntu:{ubuntuAddr}:{ubuntuOS}" >> /lib/RedHand/network.conf')
-        os.system(f'"debian:{debianAddr}:{debianOS}" >> /lib/RedHand/network.conf')
+        os.system(f'echo "ecomm:{ecommAddr}:{ecommOS}" >> /lib/RedHand/network.conf')
+        os.system(f'echo "fedora:{fedoraAddr}:{fedoraOS}" >> /lib/RedHand/network.conf')
+        os.system(f'echo "splunk:{splunkAddr}:{splunkOS}" >> /lib/RedHand/network.conf')
+        os.system(f'echo "ubuntu:{ubuntuAddr}:{ubuntuOS}" >> /lib/RedHand/network.conf')
+        os.system(f'echo "debian:{debianAddr}:{debianOS}" >> /lib/RedHand/network.conf')
         
         option = input("Would you like to start RedHand? ")
         if(option.lower() == "y" or option.lower() == "yes"):
@@ -49,18 +49,21 @@ def main():
             a = False   #No saved legend
         else:
             a = True
-        
+        print("Current presets: ")
+        for preset in legend:
+            print(preset[0])
 def isFirstTime():
-    conf = open("/lib/network.conf", "r")
+    conf = open("/lib/RedHand/network.conf", "r")
     cont = conf.read()
-    if(len(cont.split("\n")) < 1):
+    if(len(cont.split("\n")) < 2):
         return True
     return False
 def getNetInfo():
     network = [[]]
-    conf = open("/lib/network.conf", "r")
+    conf = open("/lib/RedHand/network.conf", "r")
     cont = conf.read()
     contLined = cont.split("\n")
+    del(contLined[len(contLined)-1])
     for line in contLined:
         lineSplit = line.split(":")
         machine = lineSplit[0]
@@ -85,7 +88,7 @@ def getDefaultDependencies(network):
             for item in defaultDependencies:
                 command = f"yum install -y {item}"
                 stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
-        elif(getPacMan(machine[0] == "apt"):
+        elif(getPacMan(machine[0]) == "apt"):
             for item in defaultDependencies:
                 command = f"apt-get install -y {item}"
                 stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
@@ -105,13 +108,16 @@ def getLegend():
         presetNumList = legendList[y].split(",")
         presetNum = presetNumList[0]
         presetDiff = presetNumList[1]
-        presetMacineList = legendList[z].split("\n")
+        presetMachineList = legendList[z].split("\n")
         del(presetMachineList[0]) #removes empty entry at start
         for line in presetMachineList:
             tmpMachineList = line.split(";")
-            machine = machineList[0]
-            machineList = tmpMachineList.split(",")
-            presetList.append([machine, machineList])
+            if(len(tmpMachineList) < 2):
+                pass
+            else:
+                machine = tmpMachineList[0]
+                machineList = tmpMachineList[1].split(",")
+                presetList.append([machine, machineList])
         returnList.append([presetNum, presetDiff, presetList])
         y = y + 2
     return returnList
@@ -137,28 +143,28 @@ def updatePend():
         return True
 def getDefPassword(hostName):
     return {
-        "ecomm":"changeme"
-        "fedora":"!Password123"
-        "splunk":"changemenow"
-        "ubuntu":"changeme"
-        "debian":"changeme"
+        "ecomm": "changeme",
+        "fedora": "!Password123",
+        "splunk": "changemenow",
+        "ubuntu": "changeme",
+        "debian": "changeme",
     }.get(hostName, "")
 def transNumToWeakness(num):
     return {
-        "1":"Reverse Shell in /etc/crontab"
-        "2":"Pre-Set admin user"
-        "3":"Pre-Planted Root SSH Key"
-        "4":"Venom Backdoor Install"
-        "5":"Compromised /bin/passwd"
-        "6":"Compromised /bin/sudo"
-        "7":"Pre-Planted SkyKit"
+        "1": "Reverse Shell in /etc/crontab",
+        "2": "Pre-Set admin user",
+        "3": "Pre-Planted Root SSH Key",
+        "4": "Venom Backdoor Install",
+        "5": "Compromised /bin/passwd",
+        "6": "Compromised /bin/sudo",
+        "7": "Pre-Planted SkyKit",
     }.get(num, "")
 def getPacMan(machine):
     return {
-        "ecomm":"yum"
-        "fedora":"yum"
-        "splunk":"yum"
-        "ubuntu":"apt"
-        "debian":"apt"
+        "ecomm": "yum",
+        "fedora": "yum",
+        "splunk": "yum",
+        "ubuntu": "apt",
+        "debian": "apt",
     }.get(machine, "")
 main()
