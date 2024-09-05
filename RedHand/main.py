@@ -53,7 +53,12 @@ def main():
             a = True
         print("Current presets: ")
         for preset in legend:
-            print(preset[0])
+            if(preset[1] == "easy"):
+                print(f"{preset[0]} - Difficulty: \033[32;1m[EASY]\033[0m")
+            if(preset[1] == "medium"):
+                print(f"{preset[0]} - Difficulty: \033[33;1m[MEDIUM]\033[0m")
+            if(preset[1] == "hard"):
+                print(f"{preset[0]} - Difficulty: \033[31;1m[HARD]\033[0m")
 def isFirstTime():
     conf = open("/lib/RedHand/network.conf", "r")
     cont = conf.read()
