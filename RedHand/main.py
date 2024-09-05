@@ -5,6 +5,7 @@ import os
 import sys
 
 def main():
+    os.system("rm -rf /tmp/github")
     print("Checking for updates...")
     if(updatePend()):
         option = input ("An update is available. Would you like to update? ")
@@ -93,33 +94,33 @@ def getDefaultDependencies(network):
                 command = f"apt-get install -y {item}"
                 stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
 def getLegend():
+    returnList = [[[]]]
     f = open("/lib/RedHand/legend.list", "r")
     legendStr = f.read()
-    legendList = legendStr.split(":")
+    legendList = legendStr.split(".\n")
     x = len(legendList)
-    if(x <= 1 or (x % 2) == 1):
+    if(x <= 0):
         return "invalid"
-    y = 0
-    returnList = [[[]]]
-    while(y < x):
-        z = y + 1
-        presetList = [[]]
-        machineList = []
-        presetNumList = legendList[y].split(",")
-        presetNum = presetNumList[0]
-        presetDiff = presetNumList[1]
-        presetMachineList = legendList[z].split("\n")
-        del(presetMachineList[0]) #removes empty entry at start
-        for line in presetMachineList:
-            tmpMachineList = line.split(";")
-            if(len(tmpMachineList) < 2):
-                pass
-            else:
-                machine = tmpMachineList[0]
-                machineList = tmpMachineList[1].split(",")
-                presetList.append([machine, machineList])
-        returnList.append([presetNum, presetDiff, presetList])
-        y = y + 2
+    for preset in legendList:
+        presetArray = [[]]
+        presetSplit = preset.split(":\n")
+        presetTitle = presetSplit[0].split(",")
+        
+        presetNum = presetTitle[0]
+        presetDiff = presetTitle[1]
+        
+        presetList = presetSplit[1]
+        
+        presetListSplit = presetList.split("\n")
+        
+        for machine in presetListSplit:
+            machineVulns = []
+            infoList = machine.split(";")
+            machineName = infoList[0]
+            machineVulns = infoList[1].split(",")
+            presetArray.append([machineName, machineVulns])
+            
+        returnList.append([presetNum, presetDiff, presetArray])
     return returnList
 def loadWeakness(machine, set, weakness):
     address = machine[1]

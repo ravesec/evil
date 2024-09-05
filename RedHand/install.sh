@@ -15,6 +15,7 @@ mkdir /lib/RedHand
 touch /lib/RedHand/network.conf
 touch /lib/RedHand/record.stor
 mv $repo_root/RedHand/legend.list /lib/RedHand/legend.list
+mv $repo_root/RedHand/updater.py /lib/RedHand/updater.py
 mv /$repo_root/RedHand/version /lib/RedHand/version
 chmod +x /bin/rh
 rm $0
