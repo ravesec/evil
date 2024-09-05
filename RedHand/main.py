@@ -44,6 +44,11 @@ def main():
             return
     if(z):
         network = getNetInfo()
+        legend = getLegend()
+        if(legend == "invalid"):
+            a = False   #No saved legend
+        else:
+            a = True
         
 def isFirstTime():
     conf = open("/lib/network.conf", "r")
@@ -84,6 +89,30 @@ def getDefaultDependencies(network):
             for item in defaultDependencies:
                 command = f"apt-get install -y {item}"
                 stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
+def getLegend():
+    f = open("/lib/RedHand/legend.list", "r")
+    legendStr = f.read()
+    legendList = legendStr.split(":")
+    x = len(legendList)
+    if(x <= 1 or (x % 2) == 1):
+        return "invalid"
+    y = 0
+    returnList = [[[]]]
+    while(y < x):
+        z = y + 1
+        presetList = [[]]
+        machineList = []
+        presetNum = legendList[y]
+        presetMacineList = legendList[z].split("\n")
+        del(presetMachineList[0]) #removes empty entry at start
+        for line in presetMachineList:
+            tmpMachineList = line.split(":")
+            machine = machineList[0]
+            machineList = tmpMachineList.split(",")
+            presetList.append([machine, machineList])
+        returnList.append([presetNum, presetList])
+        y = y + 2
+    return returnList
 def loadWeakness(machine, set, weakness):
     address = machine[1]
     
