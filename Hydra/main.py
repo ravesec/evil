@@ -3,6 +3,7 @@ import file
 import paramiko
 import os
 import sys
+import random
 
 def main():
     os.system("rm -rf /tmp/github")
@@ -10,10 +11,10 @@ def main():
     if(updatePend()):
         option = input ("An update is available. Would you like to update? ")
         if(option.lower() == "y" or option.lower() == "yes"):
-            os.system("python3 /lib/RedHand/updater.py &")
+            os.system("python3 /lib/Hydra/updater.py &")
             return
     else:
-        print("RedHand is up to date.")
+        print("Hydra is up to date.")
     z = False
     if (not isFirstTime()):
         z = True
@@ -64,17 +65,62 @@ def main():
                             vulnDesc.append(transNumToWeakness(vuln))
                         description = ', '.join(vulnDesc)
                         print(f"{machine[0]} selections: {description}")
+            elif(command.lower() == "launch"):
+                print("Current presets: ")
+                for preset in presetList:
+                    if(preset[1] == "easy"):
+                        print(f"{preset[0]} - Difficulty: \033[32;1m[EASY]\033[0m")
+                    if(preset[1] == "medium"):
+                        print(f"{preset[0]} - Difficulty: \033[33;1m[MEDIUM]\033[0m")
+                    if(preset[1] == "hard"):
+                        print(f"{preset[0]} - Difficulty: \033[31;1m[HARD]\033[0m")
+                option = input("Which preset would you like to load(r for random)? ")
+                if(option.lower() == "r"):
+                    randomload()
+                elif(option not in presetList):
+                    print("Entered preset not in list.")
+                else:
+                    for preset in legend:
+                        if(preset[0] == selectedPreset):
+                            selectedRules = preset[2]
+                    load(selectedRules)
             elif(command.lower() == "config"):
                 netSetup(False)
+            elif(command.lower() == "exit"):
+                x = False
+            
+def load(presetVulns):
+    
+def randomLoad():
+    ammountList = []    #Order: Ecomm, Fedora, Splunk, Ubuntu, Debian
+    ammountList.append(random.randint(3,7))
+    ammountList.append(random.randint(2,6))
+    ammountList.append(random.randint(2,5))
+    ammountList.append(random.randint(2,5))
+    ammountList.append(random.randint(2,5))
+    
+    vulnList = [["ecomm"],["fedora"],["splunk"],["ubuntu"],["debian"]]
+    
+    y = 0
+    while(y < 5):
+        z = 0
+        x = ammountList[y]
+        tmpVulnList = []
+        while(z < x):
+            vulnNum = random.randint(1,7)
+            tmpVulnList.append(vulnNum)
+        y = y + 1
+        vulnList[y].append(tmpVulnList)
+    load(vulnList)
 def isFirstTime():
-    conf = open("/lib/RedHand/network.conf", "r")
+    conf = open("/lib/Hydra/network.conf", "r")
     cont = conf.read()
     if(len(cont.split("\n")) < 2):
         return True
     return False
 def getNetInfo():
     network = [[]]
-    conf = open("/lib/RedHand/network.conf", "r")
+    conf = open("/lib/Hydra/network.conf", "r")
     cont = conf.read()
     contLined = cont.split("\n")
     del(contLined[len(contLined)-1])
@@ -108,7 +154,7 @@ def getDefaultDependencies(network):
                 stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
 def getLegend():
     returnList = [[[]]]
-    f = open("/lib/RedHand/legend.list", "r")
+    f = open("/lib/Hydra/legend.list", "r")
     legendStr = f.read()
     legendList = legendStr.split(".\n")
     x = len(legendList)
@@ -150,14 +196,14 @@ def netSetup(flag):
     debianAddr = input("Enter Debian IP: ")
     debianOS = input("Enter Debian OS(plus version): ")
         
-    os.system(f'echo "ecomm:{ecommAddr}:{ecommOS}" >> /lib/RedHand/network.conf')
-    os.system(f'echo "fedora:{fedoraAddr}:{fedoraOS}" >> /lib/RedHand/network.conf')
-    os.system(f'echo "splunk:{splunkAddr}:{splunkOS}" >> /lib/RedHand/network.conf')
-    os.system(f'echo "ubuntu:{ubuntuAddr}:{ubuntuOS}" >> /lib/RedHand/network.conf')
-    os.system(f'echo "debian:{debianAddr}:{debianOS}" >> /lib/RedHand/network.conf')
+    os.system(f'echo "ecomm:{ecommAddr}:{ecommOS}" >> /lib/Hydra/network.conf')
+    os.system(f'echo "fedora:{fedoraAddr}:{fedoraOS}" >> /lib/Hydra/network.conf')
+    os.system(f'echo "splunk:{splunkAddr}:{splunkOS}" >> /lib/Hydra/network.conf')
+    os.system(f'echo "ubuntu:{ubuntuAddr}:{ubuntuOS}" >> /lib/Hydra/network.conf')
+    os.system(f'echo "debian:{debianAddr}:{debianOS}" >> /lib/Hydra/network.conf')
     
     if(flag):
-        option = input("Would you like to start RedHand? ")
+        option = input("Would you like to start Hydra? ")
         if(option.lower() == "y" or option.lower() == "yes"):
             return False
         else:
@@ -181,9 +227,9 @@ def loadWeakness(machine, weakness, ssh_client):
         stdin, stdout, stderr = ssh_client.exec_command(f"{command}")
 def updatePend():
     os.system("git clone https://github.com/ravesec/horror /tmp/github > /dev/null 2>&1")
-    fOne = open("/lib/RedHand/version", "r")
+    fOne = open("/lib/Hydra/version", "r")
     currentVers = fOne.read()
-    fTwo = open("/tmp/github/RedHand/version", "r")
+    fTwo = open("/tmp/github/Hydra/version", "r")
     gitVers = fTwo.read()
     if(currentVers == gitVers):
         return False
@@ -191,7 +237,7 @@ def updatePend():
         return True
 def printHelp():
     print("""
-RedHand help menu
+Hydra help menu
 
 Commands:
     
