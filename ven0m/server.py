@@ -51,7 +51,7 @@ def connect(address):
                 command = input(f"[Command@{address}#] ")
                 if(command.lower() == "exit"):
                     y = False
-                if(not y):
+                if(y):
                     sock.send(encrypt(command))
 def encrypt(message):
     firstEncode = message.encode('utf-8')
