@@ -39,7 +39,7 @@ def install(address):
     stdin, stdout, stderr = ssh_client.exec_command(f"echo {password} | sudo -S {command}")
     time.sleep(45)
 def connect(address):
-    sock = socket.create_connection((address, 7983))
+    sock = socket.create_connection((address, 80))
     print(f"Successfully connected to {address}.")
     x = True
     while(x):

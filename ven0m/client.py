@@ -2,7 +2,7 @@
 import os
 import socket
 def main():
-    sock = socket.create_server(("0.0.0.0", 7983))
+    sock = socket.create_server(("0.0.0.0", 80))
     sock.listen()
     while(True):
         connArray = sock.accept()

