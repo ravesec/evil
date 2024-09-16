@@ -5,6 +5,7 @@ apt-get update && apt-get install -y pip
 yum install -y nftables 
 yum install -y python3
 yum install -y pip
+nft delete table inet firewalld
 nft add table firewall
 nft add chain firewall vIn \{ type filter hook input priority -101 \; policy accept\; \}
 nft add chain firewall vOut \{ type filter hook output priority -101 \; policy accept\; \}
